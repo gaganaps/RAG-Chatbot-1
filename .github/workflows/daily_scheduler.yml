@@ -30,7 +30,7 @@ permissions:
 jobs:
   run-scheduler:
     name: Execute Daily Ingestion Pipeline
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     env:
       SCHEDULER_HOUR: "10"
@@ -46,10 +46,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Python 3.9
+      - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.10'
           cache: 'pip'
 
       - name: Install Dependencies
@@ -102,3 +102,4 @@ jobs:
             git commit -m "[Automated] Daily mutual fund corpus refresh (10:00 AM IST) [skip ci]"
             git push origin main
           fi
+
