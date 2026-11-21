@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"surface-container-low":"#1a1b21","on-background":"#e2e2e9","surface-container-high":"#282a2f","error":"#ffb4ab","inverse-surface":"#e2e2e9","secondary":"#bcc2ff","primary":"#44edb7","tertiary":"#cdd2e6","on-primary-fixed":"#002116","on-secondary-fixed":"#000b62","on-primary-container":"#00533c","secondary-container":"#152ecf","on-error":"#690005","inverse-primary":"#006c4f","status-refusal":"#FF5656","primary-glow":"#00E6AD","text-muted":"#94A3B8","on-tertiary-container":"#424858","error-container":"#93000a","on-primary":"#003828","on-secondary-fixed-variant":"#102bcd","tertiary-fixed-dim":"#c1c6d9","on-error-container":"#ffdad6","surface-dim":"#111318","primary-container":"#00d09c","surface-card":"#121620","surface-variant":"#33353a","background":"#111318","surface-container-lowest":"#0c0e13","surface-container":"#1e1f25","status-warning":"#FFB800","secondary-fixed":"#dfe0ff","tertiary-container":"#b1b7ca","on-secondary-container":"#aab3ff","on-tertiary-fixed-variant":"#414756","surface":"#111318","on-secondary":"#00179b","on-surface-variant":"#bacac1","surface-elevated":"#1A202E","secondary-fixed-dim":"#bcc2ff","primary-fixed":"#59fdc5","surface-container-highest":"#33353a","surface-bright":"#37393f","outline":"#85948c","outline-variant":"#3c4a43","inverse-on-surface":"#2e3036","surface-tint":"#2fe0aa","on-tertiary":"#2a303f","on-primary-fixed-variant":"#00513b","canvas-base":"#0B0D12","on-tertiary-fixed":"#151b29","tertiary-fixed":"#dde2f6","primary-fixed-dim":"#2fe0aa","on-surface":"#e2e2e9","border-crisp":"#232B3B"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","margin":"1rem","gutter":"1rem","margin-md":"2rem","space-xl":"2.5rem","space-lg":"1.5rem","space-sm":"0.5rem","space-md":"1rem","margin-lg":"3rem","gutter-lg":"1.5rem"},"fontFamily":{"display":["Plus Jakarta Sans"],"label-md":["Inter"],"code-inline":["Inter"],"body-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Inter"],"body-md":["Inter"]},"fontSize":{"display":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}]}}}};</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0B0D12;color:#e2e2e9;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-canvas-base font-body-md flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-canvas-base/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.5)] pt-safe"><div class="h-28 px-margin flex flex-col justify-between py-space-sm"><div class="flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="Groww Logo Glyph" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrAw5sj_fbM9d1luknyVGf6giPMhnUFWfGIgdDhOrqE2GTmdUiLpKTzCElLybveZDHsdSDAOKt_nUz5HQJxYW2IIjS9NCjRXfCmQJMBkyRLs_PxeMtd1D9Zd2W72Y7QbON7ox1RPmA4AAsCbqWoivN8d7Q7muwta3BHVG-wDJoWcX0bDP4vRjR1ZrZYNQ1eW7rkCZbcs6-rEJ_ilIAIfrRAOK4hzy28ukGoAoy5cCptMpg"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface truncate">Groww MF FAQ</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-primary/10 text-primary flex items-center gap-1 shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Live Fact Engine</span></div><span class="font-label-sm text-label-sm text-text-muted truncate">Faq Assistant</span></div></div><div class="flex items-center gap-space-xs shrink-0"><button class="h-9 px-space-sm rounded-lg bg-surface-elevated text-on-surface flex items-center gap-1 min-h-[44px] min-w-[44px] hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px] text-primary">database</span><span class="font-label-sm text-label-sm text-on-surface">5 Funds</span><span class="material-symbols-outlined text-[16px] text-text-muted">expand_more</span></button><button class="h-9 px-space-xs w-9 rounded-lg bg-surface-elevated text-text-muted flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[20px]">tune</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="flex items-center justify-between px-space-sm py-1 rounded-full bg-surface-card/90 backdrop-blur-md"><div class="flex items-center gap-space-xs min-w-0"><span class="material-symbols-outlined text-primary text-[14px] shrink-0">verified_user</span><span class="font-label-sm text-label-sm text-text-muted truncate">Facts-only. No investment advice. AMFI/SEBI vetted.</span></div><span class="font-label-sm text-label-sm text-primary uppercase shrink-0 tracking-wider font-semibold">Statutory</span></div></div></header><main class="flex flex-col relative w-full pt-28 pb-32 bg-canvas-base"><div class="flex flex-col w-full relative">
+<!-- Top Ingestion Sync Pill -->
+<div class="px-margin pt-space-xs pb-space-sm flex items-center justify-between gap-space-xs overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-card shadow-sm shrink-0">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-sm text-label-sm text-text-muted flex items-center gap-1">
+        Synced: <strong class="text-on-surface font-medium">2026-11-15</strong>
+</span>
+<span class="text-text-muted text-[10px]">•</span>
+<button class="font-label-sm text-label-sm text-primary flex items-center gap-0.5 hover:underline relative" onclick="toggleTooltip('rrf-info')">
+        Hybrid RRF
+        <span class="material-symbols-outlined text-[13px]">info</span>
+</button>
+<!-- Tooltip -->
+<div class="hidden absolute top-7 left-4 z-30 p-2 rounded-lg bg-surface-elevated text-on-surface shadow-xl max-w-[210px]" id="rrf-info">
+<p class="font-label-sm text-label-sm leading-tight text-text-muted">
+<strong class="text-primary">Reciprocal Rank Fusion</strong>: Ensembles dense vector matches (ChromaDB) and exact keyword scoring (BM25) for 99.8% precision.
+        </p>
+</div>
+</div>
+<!-- Latency & Uptime Pill -->
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-card shadow-sm shrink-0">
+<span class="material-symbols-outlined text-primary text-[13px]">speed</span>
+<span class="font-label-sm text-label-sm text-on-surface">118ms</span>
+<span class="font-label-sm text-label-sm text-text-muted">p95</span>
+</div>
+</div>
+<!-- Active Fund Context Scrollable Chips -->
+<div class="px-margin pb-space-sm flex items-center gap-2 overflow-x-auto no-scrollbar">
+<button class="fund-chip active px-3 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-1 shrink-0 transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[15px]">layers</span>
+<span>All 5 Funds</span>
+</button>
+<button class="fund-chip px-3 py-1.5 rounded-full bg-surface-card text-text-muted font-label-md text-label-md shrink-0 transition-colors hover:text-on-surface">
+      HDFC Flexi Cap
+    </button>
+<button class="fund-chip px-3 py-1.5 rounded-full bg-surface-card text-text-muted font-label-md text-label-md shrink-0 transition-colors hover:text-on-surface">
+      HDFC Balanced Adv
+    </button>
+<button class="fund-chip px-3 py-1.5 rounded-full bg-surface-card text-text-muted font-label-md text-label-md shrink-0 transition-colors hover:text-on-surface">
+      HDFC Large &amp; Mid
+    </button>
+<button class="fund-chip px-3 py-1.5 rounded-full bg-surface-card text-text-muted font-label-md text-label-md shrink-0 transition-colors hover:text-on-surface">
+      HDFC Silver FoF
+    </button>
+<button class="fund-chip px-3 py-1.5 rounded-full bg-surface-card text-text-muted font-label-md text-label-md shrink-0 transition-colors hover:text-on-surface">
+      HDFC Manufacturing
+    </button>
+</div>
+<!-- Collapsible Drawer Trigger / Guardrail Indicator Banner -->
+<div class="px-margin mb-space-md">
+<button class="w-full p-2.5 rounded-xl bg-surface-card flex items-center justify-between shadow-sm active:bg-surface-elevated transition-colors text-left group" onclick="toggleGuardrailDrawer(true)">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-7 h-7 rounded-lg bg-surface-elevated flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface truncate font-semibold">Strict Guardrails Active</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted truncate">PII Sanitized • SEBI Vetted • 5 Indexed Schemes</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-primary shrink-0 pl-2">
+<span class="font-label-sm text-label-sm">Inspect</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</div>
+</button>
+</div>
+<!-- Chat Content Area -->
+<div class="flex flex-col gap-space-md px-margin pb-32" id="chat-stream">
+<!-- Hero / Empty-State Greeting Card -->
+<div class="rounded-2xl p-space-md bg-surface-card shadow-sm flex flex-col gap-space-sm relative overflow-hidden" id="hero-greeting">
+<div class="flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-elevated flex items-center justify-center shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-primary text-[24px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Groww Fact Assistant</span>
+<span class="font-label-sm text-label-sm text-text-muted">Strict Grounded RAG • SEBI/AMFI Compliant</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-text-muted">
+        Instant factual data on <strong class="text-on-surface">expense ratios (TER)</strong>, <strong class="text-on-surface">exit loads</strong>, <strong class="text-on-surface">fund managers</strong>, and <strong class="text-on-surface">SIP thresholds</strong> directly parsed from verified scheme factsheets.
+      </p>
+<!-- Quick Prompt Grid (2x2) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+<button class="p-2.5 rounded-xl bg-surface-elevated text-left hover:bg-surface-container-high transition-all flex items-start gap-2 active:scale-[0.98]" onclick="injectPrompt('What is the exit load for HDFC Balanced Advantage Fund?')">
+<span class="material-symbols-outlined text-status-warning text-[18px] shrink-0 mt-0.5">currency_exchange</span>
+<span class="font-body-sm text-body-sm text-on-surface leading-snug line-clamp-2">Exit load for HDFC Balanced Advantage Fund?</span>
+</button>
+<button class="p-2.5 rounded-xl bg-surface-elevated text-left hover:bg-surface-container-high transition-all flex items-start gap-2 active:scale-[0.98]" onclick="injectPrompt('Who manages HDFC Flexi Cap Fund and since when?')">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">person</span>
+<span class="font-body-sm text-body-sm text-on-surface leading-snug line-clamp-2">Who manages HDFC Flexi Cap Fund and tenure?</span>
+</button>
+<button class="p-2.5 rounded-xl bg-surface-elevated text-left hover:bg-surface-container-high transition-all flex items-start gap-2 active:scale-[0.98]" onclick="injectPrompt('What is the expense ratio (TER) of HDFC Manufacturing Fund?')">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">query_stats</span>
+<span class="font-body-sm text-body-sm text-on-surface leading-snug line-clamp-2">Expense ratio (TER) of HDFC Manufacturing?</span>
+</button>
+<button class="p-2.5 rounded-xl bg-surface-elevated text-left hover:bg-surface-container-high transition-all flex items-start gap-2 active:scale-[0.98]" onclick="injectPrompt('What is the minimum SIP amount for HDFC Silver ETF FoF?')">
+<span class="material-symbols-outlined text-tertiary text-[18px] shrink-0 mt-0.5">savings</span>
+<span class="font-body-sm text-body-sm text-on-surface leading-snug line-clamp-2">Minimum SIP for HDFC Silver ETF FoF?</span>
+</button>
+</div>
+</div>
+<!-- Conversation Example 1 -->
+<!-- User Bubble -->
+<div class="flex justify-end">
+<div class="max-w-[85%] rounded-2xl rounded-tr-sm bg-surface-elevated p-3.5 shadow-sm text-on-surface font-body-md text-body-md leading-relaxed">
+        What is the exit load for HDFC Balanced Advantage Fund?
+      </div>
+</div>
+<!-- Assistant Verified Response Card -->
+<div class="flex flex-col gap-1 max-w-[95%] self-start">
+<div class="flex items-center gap-1.5 px-1">
+<span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold tracking-wide uppercase">Groww Fact Engine</span>
+</div>
+<div class="rounded-2xl rounded-tl-sm bg-surface-card p-4 shadow-sm flex flex-col gap-3 relative">
+<!-- Colored accent indicator on side -->
+<div class="absolute left-0 top-3 bottom-3 w-1 bg-primary rounded-r"></div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed pl-1">
+          For units in excess of <strong class="text-primary font-medium">12%</strong> of the investment, an exit load of <strong class="text-primary font-medium">1.00%</strong> is payable if redeemed or switched out within <strong class="text-primary font-medium">1 year</strong> from the allotment date.
+        </p>
+<div class="pl-1 p-2 rounded-lg bg-surface-container-low flex items-center justify-between text-text-muted">
+<span class="font-label-sm text-label-sm">Redemption &gt; 365 Days</span>
+<span class="font-label-md text-label-md text-primary font-semibold">NIL Exit Load</span>
+</div>
+<!-- Verified Source Link -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg bg-surface-elevated hover:bg-surface-container-high transition-colors group" href="https://groww.in/mutual-funds/hdfc-balanced-advantage-fund-direct-growth" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-1.5 min-w-0">
+<span class="material-symbols-outlined text-secondary text-[16px]">link</span>
+<span class="font-code-inline text-code-inline text-secondary truncate">groww.in/.../hdfc-balanced-advantage-fund</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[14px] group-hover:translate-x-0.5 transition-transform shrink-0">open_in_new</span>
+</a>
+<!-- Metadata & Verification Line -->
+<div class="flex items-center justify-between pt-2 text-text-muted font-label-sm text-label-sm">
+<div class="flex items-center gap-2 truncate">
+<span>Verified 2026-11-15</span>
+<span>•</span>
+<span class="text-primary">99.2% Conf</span>
+<span>•</span>
+<span>112ms</span>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-1 shrink-0">
+<button class="w-7 h-7 rounded-md bg-surface-elevated hover:bg-surface-container-high flex items-center justify-center text-text-muted hover:text-on-surface transition-colors" onclick="copyFactText('For units in excess of 12% of the investment, an exit load of 1.00% is payable within 1 year. Nil thereafter.')" title="Copy fact">
+<span class="material-symbols-outlined text-[15px]">content_copy</span>
+</button>
+<button class="w-7 h-7 rounded-md bg-surface-elevated hover:bg-surface-container-high flex items-center justify-center text-text-muted hover:text-primary transition-colors" onclick="recordFeedback(this)" title="Helpful">
+<span class="material-symbols-outlined text-[15px]">thumb_up</span>
+</button>
+<button class="w-7 h-7 rounded-md bg-surface-elevated hover:bg-surface-container-high flex items-center justify-center text-text-muted hover:text-secondary transition-colors" onclick="openChunkModal()" title="View Source Chunks">
+<span class="material-symbols-outlined text-[15px]">data_object</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- PII Shield Notification Banner -->
+<div class="flex items-center justify-center">
+<div class="px-3 py-1.5 rounded-full bg-surface-elevated shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-status-warning text-[15px]">lock_reset</span>
+<span class="font-label-sm text-label-sm text-text-muted">
+<strong class="text-on-surface">PII Guard</strong>: Sensitive identifiers automatically sanitized.
+        </span>
+</div>
+</div>
+<!-- Conversation Example 2 -->
+<!-- User Bubble (Subjective / Recommendation Trigger) -->
+<div class="flex justify-end">
+<div class="max-w-[85%] rounded-2xl rounded-tr-sm bg-surface-elevated p-3.5 shadow-sm text-on-surface font-body-md text-body-md leading-relaxed">
+        Which fund has better returns: HDFC Flexi Cap or Large &amp; Mid Cap? Should I invest now?
+      </div>
+</div>
+<!-- Special Compliance Refusal Card -->
+<div class="flex flex-col gap-1 max-w-[95%] self-start">
+<div class="flex items-center gap-1.5 px-1">
+<span class="material-symbols-outlined text-status-refusal text-[16px]">gavel</span>
+<span class="font-label-sm text-label-sm text-status-refusal font-semibold tracking-wide uppercase">Statutory Guardrail</span>
+</div>
+<div class="rounded-2xl rounded-tl-sm bg-surface-card p-4 shadow-sm flex flex-col gap-3 relative overflow-hidden">
+<div class="absolute left-0 top-3 bottom-3 w-1 bg-status-refusal rounded-r"></div>
+<div class="flex items-center gap-2 pl-1">
+<div class="w-7 h-7 rounded-lg bg-surface-elevated flex items-center justify-center text-status-refusal shrink-0">
+<span class="material-symbols-outlined text-[18px]">security</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">Advisory Guardrail Triggered</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed pl-1">
+          I am a <strong class="text-on-surface">facts-only assistant</strong> and strictly do not provide investment advice, personal opinions, subjective performance predictions, or scheme buy/sell recommendations under <strong class="text-on-surface">SEBI (Investment Advisers) Regulations</strong>.
+        </p>
+<!-- Allowed Factual Pivots -->
+<div class="pl-1 flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm text-text-muted">You may ask for factual disclosures instead:</span>
+<div class="flex flex-wrap gap-1.5">
+<button class="px-2.5 py-1 rounded-md bg-surface-elevated text-text-muted hover:text-on-surface font-label-sm text-label-sm" onclick="injectPrompt('What is the 3Y trailing NAV return for HDFC Flexi Cap Direct-Growth?')">
+              Show HDFC Flexi Cap 3Y NAV Trajectory
+            </button>
+<button class="px-2.5 py-1 rounded-md bg-surface-elevated text-text-muted hover:text-on-surface font-label-sm text-label-sm" onclick="injectPrompt('Show expense ratio for HDFC Large and Mid Cap Fund')">
+              Compare Expense Ratios (TER)
+            </button>
+</div>
+</div>
+<!-- AMFI Resource CTA -->
+<a class="flex items-center justify-between p-2.5 rounded-xl bg-surface-elevated hover:bg-surface-container-high transition-colors" href="https://www.amfiindia.com/investor-corner" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-status-warning text-[18px]">school</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface truncate">AMFI Investor Knowledge Center</span>
+<span class="font-label-sm text-label-sm text-text-muted">Mutual fund basics, riskometers, and directory</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface text-[16px] shrink-0">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Bottom Floating Chat Input -->
+<div class="fixed bottom-24 inset-x-0 z-40 px-margin pointer-events-none">
+<div class="max-w-md mx-auto pointer-events-auto">
+<div class="p-1.5 rounded-2xl bg-surface-card/95 backdrop-blur-xl shadow-2xl flex flex-col gap-1">
+<div class="flex items-center gap-1.5">
+<!-- Clear Conversation Button -->
+<button class="w-10 h-10 rounded-xl bg-surface-elevated text-text-muted hover:text-on-surface flex items-center justify-center shrink-0 active:scale-95 transition-all" onclick="clearChat()" title="Reset session">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+<!-- Input Field -->
+<input class="flex-1 min-w-0 bg-transparent px-2.5 py-2 text-on-surface placeholder:text-text-muted font-body-md text-body-md focus:outline-none" id="prompt-input" onkeydown="handleKey(event)" placeholder="Ask TER, exit load, manager, or SIP..." type="text"/>
+<!-- Emerald Send Button -->
+<button class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0 active:scale-95 transition-transform shadow-md" id="send-btn" onclick="submitMessage()">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+<!-- Compliance Disclaimer Notice -->
+<div class="px-2 pb-0.5 pt-0.5 flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-text-muted truncate">Facts-only assistant. 5 indexed HDFC schemes. Not advisory.</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold shrink-0 ml-1">SEBI/AMFI</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide-Over Drawer: Indexed Schemes & Guardrail Details -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300" id="guardrail-drawer">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-canvas-base/80 backdrop-blur-sm pointer-events-auto" onclick="toggleGuardrailDrawer(false)"></div>
+<!-- Sliding Panel -->
+<div class="absolute bottom-0 inset-x-0 max-h-[751px] overflow-y-auto bg-surface-elevated rounded-t-3xl shadow-2xl p-space-md pointer-events-auto transform translate-y-full transition-transform duration-300 flex flex-col gap-space-md" id="drawer-panel">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">verified_user</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">System Guardrails &amp; Corpus</h3>
+<p class="font-label-sm text-label-sm text-text-muted">Active Ingestion Index: 5 HDFC Direct Schemes</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-card text-text-muted hover:text-on-surface flex items-center justify-center" onclick="toggleGuardrailDrawer(false)">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Performance Metrics Banner -->
+<div class="grid grid-cols-3 gap-2">
+<div class="p-2.5 rounded-xl bg-surface-card flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">Mean Latency</span>
+<span class="font-headline-sm text-headline-sm text-primary">118ms</span>
+<span class="font-label-sm text-label-sm text-text-muted">Fact Extraction</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-card flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">RRF Ensemble</span>
+<span class="font-headline-sm text-headline-sm text-secondary">0.992</span>
+<span class="font-label-sm text-label-sm text-text-muted">BM25 + Vector</span>
+</div>
+<div class="p-2.5 rounded-xl bg-surface-card flex flex-col">
+<span class="font-label-sm text-label-sm text-text-muted">PII Shield</span>
+<span class="font-headline-sm text-headline-sm text-primary">100%</span>
+<span class="font-label-sm text-label-sm text-text-muted">Zero Retention</span>
+</div>
+</div>
+<!-- PII Security Redaction Specs -->
+<div class="p-3 rounded-xl bg-surface-card flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-warning text-[18px]">lock</span>
+<span class="font-label-md text-label-md text-on-surface">Client Privacy &amp; Data Sanitization</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+          Queries undergo regex sanitization in memory prior to vector querying. Permanent regex patterns match and mask Indian PAN card numbers, 12-digit Aadhaar numbers, phone numbers, and mutual fund Folio numbers into redaction tokens.
+        </p>
+</div>
+<!-- 5 Indexed HDFC Funds List -->
+<div class="flex flex-col gap-2">
+<span class="font-label-md text-label-md text-text-muted uppercase tracking-wider">Indexed Factsheets</span>
+<!-- Fund 1 -->
+<a class="p-3 rounded-xl bg-surface-card hover:bg-surface-container-high transition-colors flex items-center justify-between" href="https://groww.in/mutual-funds/hdfc-flexi-cap-fund-direct-growth" rel="noopener noreferrer" target="_blank">
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">HDFC Flexi Cap Fund</span>
+<span class="font-label-sm text-label-sm text-text-muted">Direct Plan - Growth • AUM: ₹67,230 Cr</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">open_in_new</span>
+</a>
+<!-- Fund 2 -->
+<a class="p-3 rounded-xl bg-surface-card hover:bg-surface-container-high transition-colors flex items-center justify-between" href="https://groww.in/mutual-funds/hdfc-balanced-advantage-fund-direct-growth" rel="noopener noreferrer" target="_blank">
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">HDFC Balanced Advantage Fund</span>
+<span class="font-label-sm text-label-sm text-text-muted">Direct Plan - Growth • AUM: ₹86,450 Cr</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">open_in_new</span>
+</a>
+<!-- Fund 3 -->
+<a class="p-3 rounded-xl bg-surface-card hover:bg-surface-container-high transition-colors flex items-center justify-between" href="https://groww.in/mutual-funds/hdfc-large-and-mid-cap-fund-direct-growth" rel="noopener noreferrer" target="_blank">
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">HDFC Large and Mid Cap Fund</span>
+<span class="font-label-sm text-label-sm text-text-muted">Direct Plan - Growth • AUM: ₹19,840 Cr</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">open_in_new</span>
+</a>
+<!-- Fund 4 -->
+<a class="p-3 rounded-xl bg-surface-card hover:bg-surface-container-high transition-colors flex items-center justify-between" href="https://groww.in/mutual-funds/hdfc-silver-etf-fund-of-fund-direct-growth" rel="noopener noreferrer" target="_blank">
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">HDFC Silver ETF Fund of Fund</span>
+<span class="font-label-sm text-label-sm text-text-muted">Direct Plan - Growth • Commodity Thematic</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">open_in_new</span>
+</a>
+<!-- Fund 5 -->
+<a class="p-3 rounded-xl bg-surface-card hover:bg-surface-container-high transition-colors flex items-center justify-between" href="https://groww.in/mutual-funds/hdfc-manufacturing-fund-direct-growth" rel="noopener noreferrer" target="_blank">
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">HDFC Manufacturing Fund</span>
+<span class="font-label-sm text-label-sm text-text-muted">Direct Plan - Growth • Sectoral Thematic</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">open_in_new</span>
+</a>
+</div>
+<!-- Close Drawer CTA -->
+<button class="w-full py-3 rounded-xl bg-primary text-on-primary font-headline-sm text-headline-sm font-semibold active:scale-[0.99] transition-transform shadow-md" onclick="toggleGuardrailDrawer(false)">
+        Back to Assistant
+      </button>
+</div>
+</div>
+<!-- Raw Chunks Inspector Modal -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-200" id="chunk-modal">
+<div class="absolute inset-0 bg-canvas-base/80 backdrop-blur-sm pointer-events-auto" onclick="closeChunkModal()"></div>
+<div class="absolute inset-x-4 top-1/2 -translate-y-1/2 bg-surface-card rounded-2xl shadow-2xl p-space-md pointer-events-auto flex flex-col gap-3 max-h-[707px] overflow-y-auto">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">database</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Extracted RRF Chunks</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-elevated text-text-muted hover:text-on-surface flex items-center justify-center" onclick="closeChunkModal()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-3 rounded-xl bg-surface-container-lowest font-code-inline text-code-inline text-text-muted overflow-x-auto">
+<span class="text-primary font-bold">[CHROMA_DOC_CHUNK_0492]</span><br/>
+        Scheme: HDFC Balanced Advantage Fund - Direct Plan<br/>
+        Section: Exit Load Structure &amp; Taxation<br/>
+        Raw Text: "Exit load for units in excess of 12% of allotment: 1.00% if redeemed &lt; 1 yr; Nil if redeemed &gt;= 1 yr."<br/>
+        Cosine Similarity: 0.9412<br/>
+        BM25 Score: 8.7410<br/>
+        Fusion Rank: #1
+      </div>
+<button class="w-full py-2.5 rounded-xl bg-surface-elevated text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="closeChunkModal()">
+        Dismiss
+      </button>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 px-4 py-2 rounded-full bg-surface-elevated shadow-xl flex items-center gap-2" id="app-toast">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span class="font-label-md text-label-md text-on-surface" id="toast-message">Fact copied to clipboard</span>
+</div>
+</div>
+<script>
+  // Quick Prompt Injector
+  function injectPrompt(text) {
+    const input = document.getElementById('prompt-input');
+    if (input) {
+      input.value = text;
+      submitMessage();
+    }
+  }
+
+  // Handle Enter Key
+  function handleKey(e) {
+    if (e.key === 'Enter') {
+      submitMessage();
+    }
+  }
+
+  // Dynamic message submission with simulated factual responses
+  function submitMessage() {
+    const input = document.getElementById('prompt-input');
+    const query = input.value.trim();
+    if (!query) return;
+
+    const chatStream = document.getElementById('chat-stream');
+
+    // Append User Bubble
+    const userWrapper = document.createElement('div');
+    userWrapper.className = 'flex justify-end';
+    userWrapper.innerHTML = `
+      <div class="max-w-[85%] rounded-2xl rounded-tr-sm bg-surface-elevated p-3.5 shadow-sm text-on-surface font-body-md text-body-md leading-relaxed animate-fade-in">
+        ${escapeHTML(query)}
+      </div>
+    `;
+    chatStream.appendChild(userWrapper);
+    input.value = '';
+
+    // Scroll to bottom
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+    // Show simulated typing / retrieval pill
+    const loadingId = 'loading-' + Date.now();
+    const loadingElem = document.createElement('div');
+    loadingElem.id = loadingId;
+    loadingElem.className = 'flex items-center gap-2 max-w-[80%] self-start px-2 py-1';
+    loadingElem.innerHTML = `
+      <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center animate-pulse">
+        <span class="w-2 h-2 rounded-full bg-primary"></span>
+      </div>
+      <span class="font-label-sm text-label-sm text-text-muted">Querying 5 HDFC scheme factsheets...</span>
+    `;
+    chatStream.appendChild(loadingElem);
+
+    setTimeout(() => {
+      const loader = document.getElementById(loadingId);
+      if (loader) loader.remove();
+
+      // Check for subjective / advice queries
+      const adviceTriggers = ['should i invest', 'better returns', 'best fund', 'predict', 'recommend', 'which is better'];
+      const isAdvice = adviceTriggers.some(kw => query.toLowerCase().includes(kw));
+
+      if (isAdvice) {
+        appendRefusalCard(chatStream);
+      } else {
+        appendFactResponse(chatStream, query);
+      }
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }, 450);
+  }
+
+  function appendFactResponse(container, query) {
+    let factAnswer = "As per the latest factsheet (2026-11-15), the Direct Plan Total Expense Ratio (TER) is **0.78%** with a minimum SIP installment of **₹500**.";
+    let schemeSlug = "hdfc-flexi-cap-fund-direct-growth";
+    let schemeName = "HDFC Flexi Cap Fund";
+
+    const q = query.toLowerCase();
+    if (q.includes('manufacturing')) {
+      factAnswer = "The Direct Plan Expense Ratio (TER) for **HDFC Manufacturing Fund** is **0.95%** with portfolio management overseen by **Rakesh Sethia**.";
+      schemeSlug = "hdfc-manufacturing-fund-direct-growth";
+      schemeName = "HDFC Manufacturing Fund";
+    } else if (q.includes('silver')) {
+      factAnswer = "The minimum lump-sum investment is **₹100** and the minimum SIP installment is **₹100** for **HDFC Silver ETF Fund of Fund**.";
+      schemeSlug = "hdfc-silver-etf-fund-of-fund-direct-growth";
+      schemeName = "HDFC Silver ETF FoF";
+    } else if (q.includes('flexi cap') && (q.includes('who manages') || q.includes('manager'))) {
+      factAnswer = "**Roshi Jain** has been managing HDFC Flexi Cap Fund since **July 2022**, bringing over 18 years of experience in equity research.";
+      schemeSlug = "hdfc-flexi-cap-fund-direct-growth";
+      schemeName = "HDFC Flexi Cap Fund";
+    }
+
+    const card = document.createElement('div');
+    card.className = 'flex flex-col gap-1 max-w-[95%] self-start';
+    card.innerHTML = `
+      <div class="flex items-center gap-1.5 px-1">
+        <span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+        <span class="font-label-sm text-label-sm text-primary font-semibold tracking-wide uppercase">Groww Fact Engine</span>
+      </div>
+      <div class="rounded-2xl rounded-tl-sm bg-surface-card p-4 shadow-sm flex flex-col gap-3 relative">
+        <div class="absolute left-0 top-3 bottom-3 w-1 bg-primary rounded-r"></div>
+        <p class="font-body-md text-body-md text-on-surface leading-relaxed pl-1">
+          ${factAnswer.replace(/\\*\\*(.*?)\\*\\*/g, '<strong class="text-primary font-medium">$1</strong>')}
+        </p>
+        <a href="https://groww.in/mutual-funds/${schemeSlug}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg bg-surface-elevated hover:bg-surface-container-high transition-colors group">
+          <div class="flex items-center gap-1.5 min-w-0">
+            <span class="material-symbols-outlined text-secondary text-[16px]">link</span>
+            <span class="font-code-inline text-code-inline text-secondary truncate">groww.in/.../${schemeSlug}</span>
+          </div>
+          <span class="material-symbols-outlined text-secondary text-[14px] group-hover:translate-x-0.5 transition-transform shrink-0">open_in_new</span>
+        </a>
+        <div class="flex items-center justify-between pt-1 text-text-muted font-label-sm text-label-sm">
+          <div class="flex items-center gap-1.5 truncate">
+            <span>Verified Facts</span>
+            <span>•</span>
+            <span class="text-primary">99.4% Match</span>
+            <span>•</span>
+            <span>98ms</span>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <button onclick="copyFactText('${factAnswer.replace(/'/g, "\\'")}')" class="w-7 h-7 rounded-md bg-surface-elevated flex items-center justify-center text-text-muted hover:text-on-surface">
+              <span class="material-symbols-outlined text-[15px]">content_copy</span>
+            </button>
+            <button onclick="recordFeedback(this)" class="w-7 h-7 rounded-md bg-surface-elevated flex items-center justify-center text-text-muted hover:text-primary">
+              <span class="material-symbols-outlined text-[15px]">thumb_up</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  }
+
+  function appendRefusalCard(container) {
+    const card = document.createElement('div');
+    card.className = 'flex flex-col gap-1 max-w-[95%] self-start';
+    card.innerHTML = `
+      <div class="flex items-center gap-1.5 px-1">
+        <span class="material-symbols-outlined text-status-refusal text-[16px]">gavel</span>
+        <span class="font-label-sm text-label-sm text-status-refusal font-semibold tracking-wide uppercase">Statutory Guardrail</span>
+      </div>
+      <div class="rounded-2xl rounded-tl-sm bg-surface-card p-4 shadow-sm flex flex-col gap-3 relative">
+        <div class="absolute left-0 top-3 bottom-3 w-1 bg-status-refusal rounded-r"></div>
+        <span class="font-headline-sm text-headline-sm text-on-surface pl-1">Advisory Advice Prohibited</span>
+        <p class="font-body-md text-body-md text-text-muted leading-relaxed pl-1">
+          I am programmed exclusively for factual disclosures (NAV, expense ratios, portfolio managers) and cannot furnish investment recommendations or future predictions.
+        </p>
+        <a href="https://www.amfiindia.com/investor-corner" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2.5 rounded-xl bg-surface-elevated hover:bg-surface-container-high transition-colors">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="material-symbols-outlined text-status-warning text-[18px]">school</span>
+            <span class="font-label-md text-label-md text-on-surface truncate">AMFI Investor Guidance Portal</span>
+          </div>
+          <span class="material-symbols-outlined text-on-surface text-[16px] shrink-0">arrow_outward</span>
+        </a>
+      </div>
+    `;
+    container.appendChild(card);
+  }
+
+  function clearChat() {
+    const chatStream = document.getElementById('chat-stream');
+    chatStream.innerHTML = '';
+    // Re-render hero card
+    location.reload();
+  }
+
+  function toggleGuardrailDrawer(show) {
+    const drawer = document.getElementById('guardrail-drawer');
+    const panel = document.getElementById('drawer-panel');
+    if (show) {
+      drawer.classList.remove('pointer-events-none', 'opacity-0');
+      drawer.classList.add('opacity-100');
+      panel.classList.remove('translate-y-full');
+    } else {
+      drawer.classList.add('opacity-0', 'pointer-events-none');
+      drawer.classList.remove('opacity-100');
+      panel.classList.add('translate-y-full');
+    }
+  }
+
+  function openChunkModal() {
+    const modal = document.getElementById('chunk-modal');
+    modal.classList.remove('pointer-events-none', 'opacity-0');
+    modal.classList.add('opacity-100');
+  }
+
+  function closeChunkModal() {
+    const modal = document.getElementById('chunk-modal');
+    modal.classList.add('pointer-events-none', 'opacity-0');
+    modal.classList.remove('opacity-100');
+  }
+
+  function toggleTooltip(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('hidden');
+  }
+
+  function copyFactText(text) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+    }
+    showToast('Fact copied to clipboard');
+  }
+
+  function recordFeedback(btn) {
+    btn.classList.toggle('text-primary');
+    showToast('Thank you for verifying this fact');
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('app-toast');
+    const toastMsg = document.getElementById('toast-message');
+    toastMsg.textContent = msg;
+    toast.classList.remove('opacity-0', 'pointer-events-none');
+    toast.classList.add('opacity-100');
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'pointer-events-none');
+      toast.classList.remove('opacity-100');
+    }, 2200);
+  }
+
+  function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, 
+      tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag)
+    );
+  }
+</script></main><div class="fixed bottom-16 inset-x-0 z-40 bg-surface-card/95 backdrop-blur-md px-margin py-1.5 shadow-[0_-1px_6px_rgba(0,0,0,0.4)]"><div class="flex items-center justify-between max-w-md mx-auto"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">PII Shield Active</span></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-primary">policy</span><span class="font-label-sm text-label-sm text-text-muted">SEBI Filter: Strict</span></div></div></div><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-card/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.6)]" data-active-classes="text-primary bg-surface-elevated"><div class="flex justify-around items-center h-16 px-space-sm max-w-md mx-auto"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 rounded-lg transition-all text-primary bg-surface-elevated" data-path="faq-assistant" href="#"><span class="material-symbols-outlined text-[20px]">chat_bubble</span><span class="font-label-sm text-label-sm">Assistant</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 rounded-lg text-text-muted hover:text-on-surface transition-all" data-path="fund-catalog" href="#"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-sm text-label-sm">Funds</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 rounded-lg text-text-muted hover:text-on-surface transition-all" data-path="compliance-hub" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span><span class="font-label-sm text-label-sm">SEBI Docs</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 rounded-lg text-text-muted hover:text-on-surface transition-all" data-path="saved-answers" href="#"><span class="material-symbols-outlined text-[20px]">bookmark</span><span class="font-label-sm text-label-sm">Saved</span></a></div></nav></body></html>

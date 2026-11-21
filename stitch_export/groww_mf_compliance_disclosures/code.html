@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"surface-container-low":"#1a1b21","on-background":"#e2e2e9","surface-container-high":"#282a2f","error":"#ffb4ab","inverse-surface":"#e2e2e9","secondary":"#bcc2ff","primary":"#44edb7","tertiary":"#cdd2e6","on-primary-fixed":"#002116","on-secondary-fixed":"#000b62","on-primary-container":"#00533c","secondary-container":"#152ecf","on-error":"#690005","inverse-primary":"#006c4f","status-refusal":"#FF5656","primary-glow":"#00E6AD","text-muted":"#94A3B8","on-tertiary-container":"#424858","error-container":"#93000a","on-primary":"#003828","on-secondary-fixed-variant":"#102bcd","tertiary-fixed-dim":"#c1c6d9","on-error-container":"#ffdad6","surface-dim":"#111318","primary-container":"#00d09c","surface-card":"#121620","surface-variant":"#33353a","background":"#111318","surface-container-lowest":"#0c0e13","surface-container":"#1e1f25","status-warning":"#FFB800","secondary-fixed":"#dfe0ff","tertiary-container":"#b1b7ca","on-secondary-container":"#aab3ff","on-tertiary-fixed-variant":"#414756","surface":"#111318","on-secondary":"#00179b","on-surface-variant":"#bacac1","surface-elevated":"#1A202E","secondary-fixed-dim":"#bcc2ff","primary-fixed":"#59fdc5","surface-container-highest":"#33353a","surface-bright":"#37393f","outline":"#85948c","outline-variant":"#3c4a43","inverse-on-surface":"#2e3036","surface-tint":"#2fe0aa","on-tertiary":"#2a303f","on-primary-fixed-variant":"#00513b","canvas-base":"#0B0D12","on-tertiary-fixed":"#151b29","tertiary-fixed":"#dde2f6","primary-fixed-dim":"#2fe0aa","on-surface":"#e2e2e9","border-crisp":"#232B3B"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","margin":"1rem","gutter":"1rem","margin-md":"2rem","space-xl":"2.5rem","space-lg":"1.5rem","space-sm":"0.5rem","space-md":"1rem","margin-lg":"3rem","gutter-lg":"1.5rem"},"fontFamily":{"display":["Plus Jakarta Sans"],"label-md":["Inter"],"code-inline":["Inter"],"body-lg":["Inter"],"headline-sm":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-sm":["Inter"],"body-md":["Inter"]},"fontSize":{"display":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}]}}}};</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0B0D12;color:#e2e2e9;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-canvas-base font-body-md flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-canvas-base/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.5)] pt-safe"><div class="h-28 px-margin flex flex-col justify-between py-space-sm"><div class="flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="Groww Logo Glyph" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrAw5sj_fbM9d1luknyVGf6giPMhnUFWfGIgdDhOrqE2GTmdUiLpKTzCElLybveZDHsdSDAOKt_nUz5HQJxYW2IIjS9NCjRXfCmQJMBkyRLs_PxeMtd1D9Zd2W72Y7QbON7ox1RPmA4AAsCbqWoivN8d7Q7muwta3BHVG-wDJoWcX0bDP4vRjR1ZrZYNQ1eW7rkCZbcs6-rEJ_ilIAIfrRAOK4hzy28ukGoAoy5cCptMpg"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface truncate">Groww MF FAQ</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-primary/10 text-primary flex items-center gap-1 shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>Live Fact Engine</span></div><span class="font-label-sm text-label-sm text-text-muted truncate">Compliance Hub</span></div></div><div class="flex items-center gap-space-xs shrink-0"><button class="h-9 px-space-sm rounded-lg bg-surface-elevated text-on-surface flex items-center gap-1 min-h-[44px] min-w-[44px] hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px] text-primary">database</span><span class="font-label-sm text-label-sm text-on-surface">5 Funds</span><span class="material-symbols-outlined text-[16px] text-text-muted">expand_more</span></button><button class="h-9 px-space-xs w-9 rounded-lg bg-surface-elevated text-text-muted flex items-center justify-center min-h-[44px] min-w-[44px] hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[20px]">tune</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="flex items-center justify-between px-space-sm py-1 rounded-full bg-surface-card/90 backdrop-blur-md"><div class="flex items-center gap-space-xs min-w-0"><span class="material-symbols-outlined text-primary text-[14px] shrink-0">verified_user</span><span class="font-label-sm text-label-sm text-text-muted truncate">Facts-only. No investment advice. AMFI/SEBI vetted.</span></div><span class="font-label-sm text-label-sm text-primary uppercase shrink-0 tracking-wider font-semibold">Statutory</span></div></div></header><main class="flex flex-col relative w-full pt-28 pb-32 bg-canvas-base"><div class="flex flex-col w-full px-margin pb-6 gap-space-md">
+<!-- Top Hero / Regulatory Status Card -->
+<div class="relative overflow-hidden rounded-xl bg-surface-card shadow-xl p-space-md flex flex-col gap-space-sm">
+<div class="absolute -right-10 -top-10 w-36 h-36 rounded-full bg-primary/10 blur-2xl pointer-events-none"></div>
+<div class="flex items-start justify-between gap-space-sm relative z-10">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">Engine Health</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">SEBI Guardrail v4.2</span>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-space-xs py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm font-semibold shrink-0">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+        100% Operational
+      </span>
+</div>
+<!-- Assurance Banner -->
+<div class="rounded-lg bg-surface-elevated p-space-sm flex items-center justify-between gap-space-sm mt-1">
+<div class="flex items-center gap-space-xs min-w-0">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">shield</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate font-medium">Zero Investment Advice Guarantee</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[16px] shrink-0">check_circle</span>
+</div>
+<!-- Live Telemetry Tickers -->
+<div class="grid grid-cols-3 gap-space-xs pt-1">
+<div class="bg-surface-container-low rounded-lg p-space-xs flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-text-muted">Interceptions</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold" id="counter-intercepted">4,892</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-xs flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-text-muted">Advice Block</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">0 Violations</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-xs flex flex-col items-center justify-center text-center">
+<span class="font-label-sm text-label-sm text-text-muted">Audit Latency</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-semibold">18ms</span>
+</div>
+</div>
+</div>
+<!-- Regulatory Directive Reference Bar -->
+<div class="rounded-xl bg-surface-card p-space-sm flex items-center gap-space-sm shadow-md">
+<div class="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[18px]">policy</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">SEBI Master Circular</span>
+<span class="font-body-sm text-body-sm text-on-surface truncate">SEBI/HO/IMD/DF2/CIR/P/2023 Guidelines</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted px-2 py-0.5 rounded bg-surface-container-high shrink-0">vetted</span>
+</div>
+<!-- Compliance Directives Matrix (Can / Cannot Split Grid) -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Dual Guardrail Architecture</span>
+<span class="font-label-sm text-label-sm text-text-muted">SID/KIM Scope</span>
+</div>
+<!-- Permitted Queries Card -->
+<div class="rounded-xl bg-surface-card shadow-lg p-space-md flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">task_alt</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">Allowed Inquiries</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary/10 text-primary">Pure Statutory Data</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted">Deterministic extraction from verified AMC filings and audited databases:</p>
+<div class="grid grid-cols-1 gap-2 pt-1">
+<div class="flex items-start gap-space-xs bg-surface-container-low rounded-lg p-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">description</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">SID &amp; KIM Official Facts</span>
+<span class="font-label-sm text-label-sm text-text-muted">Scheme objectives, benchmark indices, asset allocation ranges.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs bg-surface-container-low rounded-lg p-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">percent</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Historical TER &amp; Exit Loads</span>
+<span class="font-label-sm text-label-sm text-text-muted">Total Expense Ratio revisions, lock-in tenures (ELSS: 36 months).</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs bg-surface-container-low rounded-lg p-2.5">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">payments</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Thresholds &amp; Fund Managers</span>
+<span class="font-label-sm text-label-sm text-text-muted">Min SIP/Lumpsum limits and stated fund manager tenures.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Strictly Blocked Inquiries Card -->
+<div class="rounded-xl bg-surface-card shadow-lg p-space-md flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-status-refusal/15 flex items-center justify-center text-status-refusal">
+<span class="material-symbols-outlined text-[16px]">block</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-status-refusal">Hard-Blocked Queries</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-status-refusal/10 text-status-refusal">Instant Refusal</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted">Intercepted instantly before prompt processing via SEBI rule-engine:</p>
+<div class="grid grid-cols-1 gap-2 pt-1">
+<div class="flex items-start gap-space-xs bg-surface-container-low rounded-lg p-2.5">
+<span class="material-symbols-outlined text-status-refusal text-[18px] shrink-0 mt-0.5">psychology_alt</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Scheme Recommendations</span>
+<span class="font-label-sm text-label-sm text-text-muted">"Which fund is best?", "Should I buy X?", or ranking by speculative alpha.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs bg-surface-container-low rounded-lg p-2.5">
+<span class="material-symbols-outlined text-status-refusal text-[18px] shrink-0 mt-0.5">trending_up</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Return Projections &amp; Forecasting</span>
+<span class="font-label-sm text-label-sm text-text-muted">Estimating future NAV or promising multi-year percentage yields.</span>
+</div>
+</div>
+<div class="flex items-start gap-space-xs bg-surface-container-low rounded-lg p-2.5">
+<span class="material-symbols-outlined text-status-refusal text-[18px] shrink-0 mt-0.5">contact_page</span>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Personalized Allocation &amp; PII</span>
+<span class="font-label-sm text-label-sm text-text-muted">PAN numbers, bank details, risk-profiling for specific individuals.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Refusal Simulator & Guardrail Demo -->
+<div class="rounded-xl bg-surface-card p-space-md shadow-xl flex flex-col gap-space-sm relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">science</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Interactive Guardrail Sandbox</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary uppercase font-semibold tracking-wider">Live Demo</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted">
+      Select a sample prompt below to witness the real-time SEBI refusal mechanism and PII masking protocol:
+    </p>
+<!-- Preset Prompt Selector Buttons -->
+<div class="flex flex-wrap gap-2 pt-1" id="prompt-pills-container">
+<button class="prompt-pill active px-3 py-1.5 rounded-full bg-surface-elevated text-primary font-label-sm text-label-sm flex items-center gap-1 transition-all" data-prompt="advisory" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>"Which fund should I buy for 25% return?"</span>
+</button>
+<button class="prompt-pill px-3 py-1.5 rounded-full bg-surface-container-low text-text-muted hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1 transition-all" data-prompt="pii" type="button">
+<span class="material-symbols-outlined text-[14px]">badge</span>
+<span>"My PAN is ABCDE1234F, show my returns"</span>
+</button>
+<button class="prompt-pill px-3 py-1.5 rounded-full bg-surface-container-low text-text-muted hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1 transition-all" data-prompt="statutory" type="button">
+<span class="material-symbols-outlined text-[14px]">check</span>
+<span>"What is the exit load on Parag Parikh Flexi Cap?"</span>
+</button>
+</div>
+<!-- Simulator Terminal Console -->
+<div class="rounded-xl bg-surface-container-lowest p-space-sm flex flex-col gap-2 shadow-inner">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-status-refusal"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-status-warning"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm text-text-muted ml-2" id="sim-audit-code">SEBI-IA-01 Audit Rule</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary" id="sim-status-badge">Interception Active</span>
+</div>
+<!-- User query display -->
+<div class="bg-surface-elevated rounded-lg p-2.5 flex items-start gap-2">
+<span class="material-symbols-outlined text-text-muted text-[16px] shrink-0 mt-0.5">person</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-text-muted uppercase">Simulated User Input</span>
+<span class="font-body-sm text-body-sm text-on-surface" id="sim-input-text">"Which fund should I buy for 25% return?"</span>
+</div>
+</div>
+<!-- Bot Guardrail Response -->
+<div class="bg-surface-card rounded-lg p-3 flex flex-col gap-2 relative overflow-hidden" id="sim-output-container">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-status-refusal text-[18px]" id="sim-output-icon">gavel</span>
+<span class="font-label-sm text-label-sm text-status-refusal font-semibold" id="sim-output-label">Refusal Triggered: Unregistered Advice Request</span>
+</div>
+<span class="font-label-sm text-label-sm text-text-muted">0.012s</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface" id="sim-output-body">
+          Under SEBI (Investment Advisers) Regulations, 2013, I am restricted from suggesting, forecasting, or endorsing mutual fund schemes. I can only provide audited SID/KIM details such as expense ratio, benchmark, or exit loads.
+        </p>
+<div class="flex items-center gap-2 pt-1" id="sim-output-tags">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-status-refusal/15 text-status-refusal">SEBI Cir. 2023-IA</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-elevated text-text-muted">Strict Guardrail #12</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Statutory Visual Illustration / Trust Card -->
+<div class="rounded-xl bg-surface-card p-space-md shadow-md flex items-center gap-space-md">
+<div class="w-16 h-16 rounded-xl bg-surface-elevated overflow-hidden shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="High-tech glowing digital security shield and official regulatory seal in dark obsidian and emerald neon green aesthetic, crisp minimalistic design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-SU5j5uSFCR-HuRpLBSaXQCnZColl_9T25TCSX6AEInURMMy9LuFhLwe4MbUe4tGsPvT6iC3PbfvTljbbDSr3RdVkKaYBXEM7NyDKZvZ8IdvxEzKYjBhx3zh4zbdelOPYDwgGCxfEhXRZ2yHWPJrHtGOT33raR2c2CRdo-iaha3g86jFB8-W-Og9SQNDCFmnD7j6SYzEu4XckcQA7ywjawjehrixv4rDHnmEufV4f"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-headline-sm text-on-surface">Zero Data Retention</span>
+<p class="font-body-sm text-body-sm text-text-muted line-clamp-2">Prompts are audited locally in transient memory. No user financial questions are sold or used for ad targeting.</p>
+</div>
+</div>
+<!-- Official Reference Links Accordion / List -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface px-space-xs">Statutory Authorities &amp; Charters</span>
+<div class="rounded-xl bg-surface-card overflow-hidden shadow-md divide-y divide-transparent">
+<!-- Link: AMFI India -->
+<a class="flex items-center justify-between p-space-sm hover:bg-surface-elevated transition-colors" href="https://www.amfiindia.com" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">AMFI India Official Portal</span>
+<span class="font-label-sm text-label-sm text-text-muted">Association of Mutual Funds in India NAV Hub</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px] shrink-0">open_in_new</span>
+</a>
+<!-- Link: SEBI Investor Charter -->
+<a class="flex items-center justify-between p-space-sm hover:bg-surface-elevated transition-colors" href="https://www.sebi.gov.in" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">SEBI Investor Charter</span>
+<span class="font-label-sm text-label-sm text-text-muted">Rights, responsibilities &amp; grievance redressal (SCORES)</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px] shrink-0">open_in_new</span>
+</a>
+<!-- Link: Groww Terms & Disclaimers -->
+<a class="flex items-center justify-between p-space-sm hover:bg-surface-elevated transition-colors" href="#">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-glow shrink-0">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">Groww Terms of Service &amp; Disclaimer</span>
+<span class="font-label-sm text-label-sm text-text-muted">Platform disclosures &amp; algorithmic transparency</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px] shrink-0">open_in_new</span>
+</a>
+<!-- Link: Key Scheme Docs (SID/KIM Repo) -->
+<a class="flex items-center justify-between p-space-sm hover:bg-surface-elevated transition-colors" href="#">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center text-text-muted shrink-0">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">Official SID &amp; KIM Central Archive</span>
+<span class="font-label-sm text-label-sm text-text-muted">Updated monthly by SEBI registered AMCs</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px] shrink-0">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Mandatory Statutory Mutual Fund Disclaimer Box -->
+<div class="rounded-xl bg-surface-container-low p-space-md shadow-inner flex flex-col gap-space-xs mt-1">
+<div class="flex items-center gap-1.5 text-status-warning">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider">Statutory Notice</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface font-semibold leading-relaxed">
+      Mutual fund investments are subject to market risks, read all scheme related documents carefully.
+    </p>
+<p class="font-label-sm text-label-sm text-text-muted leading-normal">
+      Groww MF FAQ Assistant is an automated question-answering information retrieval system operating under SEBI guidelines. It does not provide personalized investment advice, recommendations, portfolio valuations, or guaranteed yield assurances. Past performance does not indicate future results.
+    </p>
+</div>
+</div>
+<!-- Interactive Sandbox Script -->
+<script>
+  (function initGuardrailSandbox() {
+    const pills = document.querySelectorAll('#prompt-pills-container .prompt-pill');
+    const inputText = document.getElementById('sim-input-text');
+    const auditCode = document.getElementById('sim-audit-code');
+    const statusBadge = document.getElementById('sim-status-badge');
+    const outputIcon = document.getElementById('sim-output-icon');
+    const outputLabel = document.getElementById('sim-output-label');
+    const outputBody = document.getElementById('sim-output-body');
+    const outputTags = document.getElementById('sim-output-tags');
+    const counterInter = document.getElementById('counter-intercepted');
+
+    let count = 4892;
+
+    const dataMap = {
+      advisory: {
+        text: '"Which fund should I buy for 25% return?"',
+        audit: 'SEBI-IA-01 Violation',
+        status: 'Intercepted &amp; Deflected',
+        statusClass: 'text-status-refusal',
+        icon: 'gavel',
+        iconClass: 'text-status-refusal',
+        label: 'Auto-Refusal: Investment Advice Prohibited',
+        labelClass: 'text-status-refusal',
+        body: 'Under SEBI (Investment Advisers) Regulations, 2013, I am restricted from suggesting, forecasting, or endorsing mutual fund schemes. I can only provide audited SID/KIM details such as expense ratio, benchmark, or exit loads.',
+        tags: [
+          { text: 'SEBI Cir. 2023-IA', class: 'bg-status-refusal/15 text-status-refusal' },
+          { text: 'Rule: No Speculative Advice', class: 'bg-surface-elevated text-text-muted' }
+        ]
+      },
+      pii: {
+        text: '"My PAN is ABCDE1234F, show my returns"',
+        audit: 'PII Shield Alpha-9',
+        status: 'PII Sanitized',
+        statusClass: 'text-status-warning',
+        icon: 'lock',
+        iconClass: 'text-status-warning',
+        label: 'PII Masking Triggered: PAN Scrubbed',
+        labelClass: 'text-status-warning',
+        body: 'Data scrubbing pattern match triggered: [PAN: ••••••••••]. This assistant does not access individual user portfolios, account balances, or tax credentials. Please use the Groww Portfolio tab for your personal folio records.',
+        tags: [
+          { text: 'DPDP Act 2023 Compliant', class: 'bg-status-warning/15 text-status-warning' },
+          { text: 'Zero Log Scrubbing', class: 'bg-surface-elevated text-text-muted' }
+        ]
+      },
+      statutory: {
+        text: '"What is the exit load on Parag Parikh Flexi Cap?"',
+        audit: 'Verified SID Engine',
+        status: 'Permitted Inquiry',
+        statusClass: 'text-primary',
+        icon: 'verified',
+        iconClass: 'text-primary',
+        label: 'Approved: Factual Scheme Information',
+        labelClass: 'text-primary',
+        body: 'Exit Load: 2.00% if redeemed or switched out within 365 days from the date of allotment; 1.00% if redeemed between 366 and 730 days; NIL thereafter. (Source: Latest PPFAS Scheme Information Document).',
+        tags: [
+          { text: 'Audited SID Oct 2024', class: 'bg-primary/15 text-primary' },
+          { text: '100% Deterministic Fact', class: 'bg-surface-elevated text-text-muted' }
+        ]
+      }
+    };
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => {
+          p.classList.remove('bg-surface-elevated', 'text-primary');
+          p.classList.add('bg-surface-container-low', 'text-text-muted');
+        });
+        pill.classList.remove('bg-surface-container-low', 'text-text-muted');
+        pill.classList.add('bg-surface-elevated', 'text-primary');
+
+        const mode = pill.getAttribute('data-prompt');
+        const state = dataMap[mode];
+        if (!state) return;
+
+        inputText.textContent = state.text;
+        auditCode.textContent = state.audit;
+        statusBadge.innerHTML = state.status;
+
+        outputIcon.textContent = state.icon;
+        outputIcon.className = 'material-symbols-outlined text-[18px] ' + state.iconClass;
+
+        outputLabel.textContent = state.label;
+        outputLabel.className = 'font-label-sm text-label-sm font-semibold ' + state.labelClass;
+
+        outputBody.textContent = state.body;
+
+        outputTags.innerHTML = state.tags.map(t => 
+          `<span class="font-label-sm text-label-sm px-2 py-0.5 rounded ${t.class}">${t.text}</span>`
+        ).join('');
+
+        if (mode === 'advisory' || mode === 'pii') {
+          count++;
+          if (counterInter) {
+            counterInter.textContent = count.toLocaleString('en-IN');
+          }
+        }
+      });
+    });
+  })();
+</script></main><div class="fixed bottom-16 inset-x-0 z-40 bg-surface-card/95 backdrop-blur-md px-margin py-1.5 shadow-[0_-1px_6px_rgba(0,0,0,0.4)]"><div class="flex items-center justify-between max-w-md mx-auto"><div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">PII Shield Active</span></div><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-primary">policy</span><span class="font-label-sm text-label-sm text-text-muted">SEBI Filter: Strict</span></div></div></div><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-card/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.6)]" data-active-classes="text-primary bg-surface-elevated"><div class="flex justify-around items-center h-16 px-space-sm max-w-md mx-auto"><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 rounded-lg text-text-muted hover:text-on-surface transition-all" data-path="faq-assistant" href="#"><span class="material-symbols-outlined text-[20px]">chat_bubble</span><span class="font-label-sm text-label-sm">Assistant</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 rounded-lg text-text-muted hover:text-on-surface transition-all" data-path="fund-catalog" href="#"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-sm text-label-sm">Funds</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 rounded-lg transition-all text-primary bg-surface-elevated" data-path="compliance-hub" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span><span class="font-label-sm text-label-sm">SEBI Docs</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] h-12 rounded-lg text-text-muted hover:text-on-surface transition-all" data-path="saved-answers" href="#"><span class="material-symbols-outlined text-[20px]">bookmark</span><span class="font-label-sm text-label-sm">Saved</span></a></div></nav></body></html>

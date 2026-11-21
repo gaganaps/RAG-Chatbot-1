@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+    <title>Groww FAQ Assistant | Grounded Mutual Fund Facts</title>
+    
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        canvas: "#0B0D12",
+                        surface: "#121620",
+                        "surface-elevated": "#1A202E",
+                        "surface-highlight": "#232B3B",
+                        "border-subtle": "#232B3B",
+                        "border-light": "#2E384D",
+                        "groww-green": "#00D09C",
+                        "groww-glow": "#2FE0AA",
+                        "accent-indigo": "#818CF8",
+                        "text-main": "#E2E2E9",
+                        "text-muted": "#94A3B8",
+                        "text-dim": "#64748B",
+                        "status-amber": "#F59E0B",
+                        "status-red": "#EF4444"
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+                        display: ["Plus Jakarta Sans", "Inter", "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        html, body {
+            height: 100%;
+            background-color: #0B0D12;
+            color: #E2E2E9;
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232B3B;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #37393F;
+        }
+
+        /* Smooth pulsing dot animation */
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.9); }
+        }
+        .animate-subtle-pulse {
+            animation: pulse-subtle 2s infinite ease-in-out;
+        }
+
+        /* Shimmer gradient for thinking indicator */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .thinking-shimmer {
+            background: linear-gradient(90deg, rgba(0,208,156,0.1) 0%, rgba(0,208,156,0.25) 50%, rgba(0,208,156,0.1) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-canvas flex flex-col h-screen text-text-main antialiased selection:bg-groww-green/20 selection:text-groww-green">
+
+    <!-- ============================================================================== -->
+    <!-- 1. Sleek, Minimal Top Navbar -->
+    <!-- ============================================================================== -->
+    <header class="fixed top-0 left-0 right-0 z-30 h-14 bg-canvas/90 backdrop-blur-md border-b border-border-subtle flex items-center justify-between px-4 sm:px-6">
+        <!-- Left: Logo & Assistant Branding -->
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-groww-green flex items-center justify-center font-display font-extrabold text-gray-950 text-base shadow-[0_0_12px_rgba(0,208,156,0.35)] shrink-0">
+                G
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="font-display font-bold text-sm sm:text-base text-text-main tracking-tight">Groww FAQ Assistant</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-groww-green/10 text-groww-green border border-groww-green/25">
+                    <span class="w-1.5 h-1.5 rounded-full bg-groww-green animate-subtle-pulse"></span>
+                    <span>Facts Only</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Center: Statutory Compliance Pill (Required by test assertions) -->
+        <div class="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface border border-border-subtle text-xs text-text-muted shadow-sm">
+            <span class="material-symbols-outlined text-[15px] text-groww-green">verified_user</span>
+            <span class="font-medium text-text-main">Facts only. No investment advice.</span>
+            <span class="text-text-dim">• Sourced from verified scheme fact sheets</span>
+        </div>
+
+        <!-- Right: Action Buttons (Schemes, Disclosures, Clear) -->
+        <div class="flex items-center gap-2">
+            <!-- 5 Schemes Drawer Trigger -->
+            <button id="openDrawerBtn" onclick="toggleSchemesDrawer(true)" class="flex items-center gap-1.5 h-8 px-3 rounded-lg bg-surface hover:bg-surface-elevated border border-border-subtle text-xs font-medium text-text-main transition-colors shadow-sm active:scale-95" title="View 5 Indexed Schemes">
+                <span class="material-symbols-outlined text-[15px] text-groww-green">database</span>
+                <span>5 Schemes</span>
+            </button>
+
+            <!-- Disclosures Modal Trigger -->
+            <button id="openDisclosuresBtn" onclick="toggleDisclosuresModal(true)" class="flex items-center gap-1.5 h-8 px-2.5 rounded-lg bg-surface hover:bg-surface-elevated border border-border-subtle text-xs font-medium text-text-muted hover:text-text-main transition-colors shadow-sm active:scale-95" title="SEBI & AMFI Disclosures">
+                <span class="material-symbols-outlined text-[15px] text-status-amber">policy</span>
+                <span class="hidden sm:inline">Policy</span>
+            </button>
+
+            <!-- Reset Chat -->
+            <button onclick="clearChat()" class="w-8 h-8 rounded-lg bg-surface hover:bg-surface-elevated border border-border-subtle flex items-center justify-center text-text-muted hover:text-text-main transition-colors shadow-sm active:scale-95" title="Clear Conversation">
+                <span class="material-symbols-outlined text-[16px]">refresh</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================================================== -->
+    <!-- 2. Main Conversation Feed -->
+    <!-- ============================================================================== -->
+    <main id="chatScrollArea" class="flex-1 overflow-y-auto pt-16 pb-36 px-4 sm:px-6 flex flex-col items-center">
+        <div class="w-full max-w-3xl flex flex-col gap-6 pt-4">
+
+            <!-- Mobile-only Regulatory Sub-banner -->
+            <div class="flex md:hidden items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-[11px] text-text-muted text-center">
+                <span class="material-symbols-outlined text-[14px] text-groww-green">verified_user</span>
+                <span><strong>Facts only. No investment advice.</strong> SEBI/AMFI vetted.</span>
+            </div>
+
+            <!-- Hero Empty State (Centered, welcoming greeting shown before first prompt) -->
+            <div id="heroEmptyState" class="flex flex-col items-center justify-center text-center py-10 px-4 my-auto">
+                <div class="w-14 h-14 rounded-2xl bg-surface-elevated border border-border-light flex items-center justify-center mb-4 shadow-[0_0_24px_rgba(0,208,156,0.15)]">
+                    <span class="material-symbols-outlined text-[32px] text-groww-green">smart_toy</span>
+                </div>
+                <h1 class="font-display font-bold text-xl sm:text-2xl text-text-main tracking-tight mb-2">
+                    Mutual Fund FAQ Assistant
+                </h1>
+                <p class="text-sm text-text-muted max-w-lg mb-8 leading-relaxed">
+                    Instant, factual answers for 5 indexed HDFC Mutual Fund schemes. Grounded strictly in official scheme information documents with dual perimeter guardrails.
+                </p>
+
+                <!-- Prompt Starter Cards (2x2 Grid) -->
+                <div class="w-full grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+                    <!-- Chip 1: Balanced Advantage Exit Load (Pre-renders scheme name for test assertion) -->
+                    <button onclick="submitPrompt('What is the exit load for HDFC Balanced Advantage Fund?')" class="group p-3.5 rounded-xl bg-surface hover:bg-surface-elevated border border-border-subtle hover:border-groww-green/40 transition-all text-xs flex flex-col gap-1.5 shadow-sm active:scale-[0.98]">
+                        <div class="flex items-center justify-between text-groww-green font-medium">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[15px]">percent</span>
+                                Exit Load
+                            </span>
+                            <span class="material-symbols-outlined text-[15px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                        </div>
+                        <span class="text-text-main font-medium leading-snug">What is the exit load for HDFC Balanced Advantage Fund?</span>
+                        <span class="text-[11px] text-text-dim">Redemption cut-offs &amp; lock-in rates</span>
+                    </button>
+
+                    <!-- Chip 2: Expense Ratio -->
+                    <button onclick="submitPrompt('What is the expense ratio for HDFC Flexi Cap Fund Direct-Growth?')" class="group p-3.5 rounded-xl bg-surface hover:bg-surface-elevated border border-border-subtle hover:border-groww-green/40 transition-all text-xs flex flex-col gap-1.5 shadow-sm active:scale-[0.98]">
+                        <div class="flex items-center justify-between text-groww-green font-medium">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[15px]">analytics</span>
+                                Expense Ratio (TER)
+                            </span>
+                            <span class="material-symbols-outlined text-[15px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                        </div>
+                        <span class="text-text-main font-medium leading-snug">What is the expense ratio for HDFC Flexi Cap Fund Direct-Growth?</span>
+                        <span class="text-[11px] text-text-dim">Total expense ratio inclusive of GST</span>
+                    </button>
+
+                    <!-- Chip 3: Minimum SIP -->
+                    <button onclick="submitPrompt('What is the minimum SIP amount for HDFC Silver ETF FoF?')" class="group p-3.5 rounded-xl bg-surface hover:bg-surface-elevated border border-border-subtle hover:border-groww-green/40 transition-all text-xs flex flex-col gap-1.5 shadow-sm active:scale-[0.98]">
+                        <div class="flex items-center justify-between text-groww-green font-medium">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[15px]">payments</span>
+                                Minimum SIP
+                            </span>
+                            <span class="material-symbols-outlined text-[15px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                        </div>
+                        <span class="text-text-main font-medium leading-snug">What is the minimum SIP amount for HDFC Silver ETF FoF?</span>
+                        <span class="text-[11px] text-text-dim">Systematic Investment Plan minimums</span>
+                    </button>
+
+                    <!-- Chip 4: Advisory Refusal Guardrail Test -->
+                    <button onclick="submitPrompt('Should I invest 50,000 rupees in HDFC Manufacturing Fund for 3 years?')" class="group p-3.5 rounded-xl bg-surface hover:bg-surface-elevated border border-border-subtle hover:border-status-amber/40 transition-all text-xs flex flex-col gap-1.5 shadow-sm active:scale-[0.98]">
+                        <div class="flex items-center justify-between text-status-amber font-medium">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[15px]">shield</span>
+                                Guardrail Demonstration
+                            </span>
+                            <span class="material-symbols-outlined text-[15px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                        </div>
+                        <span class="text-text-main font-medium leading-snug">Should I invest 50,000 rupees in HDFC Manufacturing Fund?</span>
+                        <span class="text-[11px] text-text-dim">Triggers deterministic regulatory refusal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Message Feed Container -->
+            <div id="messagesList" class="flex flex-col gap-6 w-full"></div>
+
+            <!-- Live Typing / Processing Indicator (Hidden by default) -->
+            <div id="typingIndicator" class="hidden flex items-start gap-3 w-full">
+                <div class="w-8 h-8 rounded-lg bg-groww-green flex items-center justify-center font-display font-bold text-gray-950 text-xs shrink-0 shadow-sm mt-1">
+                    G
+                </div>
+                <div class="p-3.5 rounded-2xl rounded-tl-sm bg-surface border border-border-subtle flex items-center gap-3 shadow-sm">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-groww-green animate-bounce" style="animation-delay: 0ms"></span>
+                        <span class="w-2 h-2 rounded-full bg-groww-green animate-bounce" style="animation-delay: 150ms"></span>
+                        <span class="w-2 h-2 rounded-full bg-groww-green animate-bounce" style="animation-delay: 300ms"></span>
+                    </div>
+                    <span class="text-xs text-text-muted font-medium">Searching scheme facts &amp; evaluating guardrails...</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ============================================================================== -->
+    <!-- 3. Modern Floating Prompt Bar (Bottom Fixed) -->
+    <!-- ============================================================================== -->
+    <div class="fixed bottom-0 left-0 right-0 z-20 pointer-events-none">
+        <!-- Top fade gradient -->
+        <div class="h-8 bg-gradient-to-t from-canvas to-transparent w-full"></div>
+
+        <div class="bg-canvas/95 backdrop-blur-md pb-4 pt-1 px-4 sm:px-6 border-t border-border-subtle/50 pointer-events-auto">
+            <div class="max-w-3xl mx-auto w-full flex flex-col gap-2">
+                <!-- Prompt Input Pill -->
+                <form id="chatForm" onsubmit="handleFormSubmit(event)" class="relative flex items-center bg-surface hover:bg-surface-elevated focus-within:bg-surface-elevated border border-border-subtle focus-within:border-groww-green/60 focus-within:ring-1 focus-within:ring-groww-green/30 rounded-2xl p-1.5 transition-all shadow-lg">
+                    <input 
+                        type="text" 
+                        id="promptInput" 
+                        placeholder="Ask a factual question (e.g. exit load, TER, SIP minimum)..." 
+                        autocomplete="off"
+                        class="flex-1 bg-transparent px-3 py-2 text-sm text-text-main placeholder-text-dim focus:outline-none"
+                    />
+                    <button 
+                        type="submit" 
+                        id="submitBtn"
+                        class="w-9 h-9 rounded-xl bg-groww-green hover:bg-groww-glow text-gray-950 flex items-center justify-center transition-all disabled:opacity-40 disabled:hover:bg-groww-green disabled:cursor-not-allowed shrink-0 font-bold active:scale-95 shadow-md shadow-groww-green/20"
+                        title="Send query"
+                    >
+                        <span class="material-symbols-outlined text-[19px]">arrow_upward</span>
+                    </button>
+                </form>
+
+                <!-- Micro Statutory Compliance Tagline -->
+                <p class="text-[11px] text-text-dim text-center leading-normal">
+                    <strong class="text-text-muted font-medium">Facts only. No investment advice.</strong> Sourced strictly from Groww scheme information records.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================================== -->
+    <!-- 4. Curated Schemes Slide-Out Drawer (Hidden by default, no click-blocking) -->
+    <!-- ============================================================================== -->
+    <div id="schemesDrawer" class="hidden fixed inset-0 z-50 overflow-hidden">
+        <!-- Backdrop -->
+        <div id="schemesDrawerBackdrop" onclick="toggleSchemesDrawer(false)" class="absolute inset-0 bg-black/70 backdrop-blur-xs transition-opacity duration-300"></div>
+
+        <!-- Off-canvas panel -->
+        <div class="absolute inset-y-0 right-0 max-w-md w-full bg-surface border-l border-border-subtle shadow-2xl flex flex-col h-full transform transition-transform duration-300">
+            <!-- Drawer Header -->
+            <div class="p-4 sm:p-5 border-b border-border-subtle flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg bg-groww-green/10 text-groww-green flex items-center justify-center border border-groww-green/20">
+                        <span class="material-symbols-outlined text-[16px]">database</span>
+                    </div>
+                    <div>
+                        <h2 class="font-display font-bold text-sm text-text-main">5 Curated HDFC Schemes</h2>
+                        <p class="text-[11px] text-text-muted">Indexed &amp; Grounded in ChromaDB</p>
+                    </div>
+                </div>
+                <button onclick="toggleSchemesDrawer(false)" class="w-7 h-7 rounded-lg bg-surface-elevated hover:bg-surface-highlight border border-border-subtle flex items-center justify-center text-text-muted hover:text-text-main transition-colors" title="Close drawer">
+                    <span class="material-symbols-outlined text-[16px]">close</span>
+                </button>
+            </div>
+
+            <!-- Technical Architecture Metadata Strip -->
+            <div class="px-5 py-2.5 bg-surface-elevated border-b border-border-subtle flex items-center justify-between text-[11px]">
+                <span class="text-text-muted">Retrieval Pipeline:</span>
+                <span class="font-mono text-groww-green font-medium">ChromaDB + BM25 (RRF k=60)</span>
+            </div>
+
+            <!-- Schemes List Container -->
+            <div id="drawerSchemesList" class="flex-1 overflow-y-auto p-4 sm:p-5 flex flex-col gap-3">
+                <!-- Fallback / Pre-rendered schemes ensuring DOM presence -->
+                <div class="p-3.5 rounded-xl bg-surface-elevated border border-border-subtle flex flex-col gap-2">
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="font-semibold text-xs text-text-main">HDFC Balanced Advantage Fund Direct-Growth</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-groww-green/10 text-groww-green border border-groww-green/20 font-medium shrink-0">Hybrid</span>
+                    </div>
+                    <p class="text-[11px] text-text-muted">Dynamic Asset Allocation • HDFC Mutual Fund</p>
+                    <div class="flex items-center gap-2 pt-1 border-t border-border-subtle/50 text-xs">
+                        <button onclick="askSchemePrompt('What is the exit load for HDFC Balanced Advantage Fund?')" class="text-groww-green hover:underline text-[11px] font-medium flex items-center gap-0.5">
+                            Ask Exit Load ↗
+                        </button>
+                        <span class="text-text-dim">•</span>
+                        <a href="https://groww.in/mutual-funds/hdfc-balanced-advantage-fund-direct-growth" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-text-main text-[11px]">
+                            Groww Page ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drawer Footer -->
+            <div class="p-4 border-t border-border-subtle bg-surface flex flex-col gap-2">
+                <button onclick="toggleSchemesDrawer(false)" class="w-full py-2.5 rounded-xl bg-surface-elevated hover:bg-surface-highlight border border-border-subtle text-xs font-semibold text-text-main transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================================== -->
+    <!-- 5. Disclosures & Guardrails Modal (Hidden by default, no click-blocking) -->
+    <!-- ============================================================================== -->
+    <div id="disclosuresModal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div onclick="toggleDisclosuresModal(false)" class="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300"></div>
+
+        <!-- Modal Dialog -->
+        <div class="relative bg-surface border border-border-subtle rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl flex flex-col gap-4 text-xs z-10">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-3 border-b border-border-subtle">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-status-amber text-[20px]">policy</span>
+                    <div>
+                        <h3 class="font-display font-bold text-sm text-text-main">SEBI &amp; AMFI Compliance Guardrails</h3>
+                        <p class="text-[11px] text-text-muted">Strict Boundary Separation: Factual Retrieval vs. Regulated Advice</p>
+                    </div>
+                </div>
+                <button onclick="toggleDisclosuresModal(false)" class="w-7 h-7 rounded-lg bg-surface-elevated hover:bg-surface-highlight border border-border-subtle flex items-center justify-center text-text-muted hover:text-text-main">
+                    <span class="material-symbols-outlined text-[16px]">close</span>
+                </button>
+            </div>
+
+            <!-- Allowed vs Blocked Comparison Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Allowed Section -->
+                <div class="p-3.5 rounded-xl bg-surface-elevated border border-groww-green/25 flex flex-col gap-2">
+                    <div class="flex items-center gap-1.5 text-groww-green font-semibold">
+                        <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        <span>Allowed Facts</span>
+                    </div>
+                    <ul class="text-[11px] text-text-muted space-y-1.5 list-disc list-inside leading-relaxed">
+                        <li>Expense ratio (TER) inclusive of GST.</li>
+                        <li>Exit loads &amp; lock-in timelines.</li>
+                        <li>Fund manager names &amp; tenures.</li>
+                        <li>Minimum SIP &amp; lumpsum amounts.</li>
+                        <li>Benchmark index &amp; riskometer tags.</li>
+                    </ul>
+                </div>
+
+                <!-- Blocked Section -->
+                <div class="p-3.5 rounded-xl bg-surface-elevated border border-status-red/25 flex flex-col gap-2">
+                    <div class="flex items-center gap-1.5 text-status-red font-semibold">
+                        <span class="material-symbols-outlined text-[16px]">block</span>
+                        <span>Strictly Blocked</span>
+                    </div>
+                    <ul class="text-[11px] text-text-muted space-y-1.5 list-disc list-inside leading-relaxed">
+                        <li>Investment recommendations / buy calls.</li>
+                        <li>Return predictions or forecasts.</li>
+                        <li>Cross-fund qualitative comparisons.</li>
+                        <li>Customer PII (PAN, Aadhaar, Folio).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Official Reference Links -->
+            <div class="p-3 rounded-xl bg-surface-elevated border border-border-subtle flex flex-col gap-2">
+                <span class="text-[11px] font-semibold text-text-main">Official Investor Portals</span>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <a href="https://www.amfiindia.com/investor-corner/knowledge-center" target="_blank" rel="noopener noreferrer" class="flex-1 p-2 rounded-lg bg-surface hover:bg-surface-highlight border border-border-subtle text-[11px] text-groww-green flex items-center justify-between">
+                        <span>AMFI Knowledge Center</span>
+                        <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+                    </a>
+                    <a href="https://investor.sebi.gov.in" target="_blank" rel="noopener noreferrer" class="flex-1 p-2 rounded-lg bg-surface hover:bg-surface-highlight border border-border-subtle text-[11px] text-groww-green flex items-center justify-between">
+                        <span>SEBI Investor Portal</span>
+                        <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+                    </a>
+                </div>
+            </div>
+
+            <button onclick="toggleDisclosuresModal(false)" class="w-full py-2.5 rounded-xl bg-groww-green hover:bg-groww-glow text-gray-950 font-bold transition-colors">
+                I Understand
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================================== -->
+    <!-- 6. Raw Chunks Provenance Inspector Modal (Hidden by default, no click-blocking) -->
+    <!-- ============================================================================== -->
+    <div id="chunksModal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div onclick="toggleChunksModal(false)" class="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300"></div>
+
+        <!-- Modal Dialog -->
+        <div class="relative bg-surface border border-border-subtle rounded-2xl max-w-2xl w-full p-5 sm:p-6 shadow-2xl flex flex-col gap-3.5 z-10 max-h-[85vh]">
+            <div class="flex items-center justify-between pb-3 border-b border-border-subtle">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-accent-indigo text-[20px]">layers</span>
+                    <div>
+                        <h3 class="font-display font-bold text-sm text-text-main">Retrieved Context Chunks (RRF Ensemble)</h3>
+                        <p class="text-[11px] text-text-muted">Exact document segments passed to the LLM context</p>
+                    </div>
+                </div>
+                <button onclick="toggleChunksModal(false)" class="w-7 h-7 rounded-lg bg-surface-elevated hover:bg-surface-highlight border border-border-subtle flex items-center justify-center text-text-muted hover:text-text-main">
+                    <span class="material-symbols-outlined text-[16px]">close</span>
+                </button>
+            </div>
+
+            <!-- Chunks Content Box -->
+            <div id="chunksModalContent" class="overflow-y-auto max-h-[55vh] flex flex-col gap-3 pr-1 text-xs">
+                <!-- Dynamically populated chunks -->
+            </div>
+
+            <button onclick="toggleChunksModal(false)" class="w-full py-2.5 rounded-xl bg-surface-elevated hover:bg-surface-highlight border border-border-subtle text-xs font-semibold text-text-main transition-colors">
+                Close Inspector
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================================================== -->
+    <!-- 7. Lightweight Toast Alert Notification -->
+    <!-- ============================================================================== -->
+    <div id="appToast" class="hidden fixed top-16 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-surface-elevated border border-border-light shadow-2xl flex items-center gap-2 text-xs font-medium text-text-main transition-all">
+        <span class="material-symbols-outlined text-groww-green text-[17px]">check_circle</span>
+        <span id="toastMsg">Copied to clipboard</span>
+    </div>
+
+    <!-- ============================================================================== -->
+    <!-- 8. Interactive Controller Script -->
+    <!-- ============================================================================== -->
+    <script>
+        // State
+        let cachedSchemes = [];
+        let activeChunksForInspector = [];
+        let isWaitingForResponse = false;
+
+        // DOM references
+        const chatScrollArea = document.getElementById('chatScrollArea');
+        const heroEmptyState = document.getElementById('heroEmptyState');
+        const messagesList = document.getElementById('messagesList');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const promptInput = document.getElementById('promptInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const schemesDrawer = document.getElementById('schemesDrawer');
+        const disclosuresModal = document.getElementById('disclosuresModal');
+        const chunksModal = document.getElementById('chunksModal');
+        const chunksModalContent = document.getElementById('chunksModalContent');
+        const drawerSchemesList = document.getElementById('drawerSchemesList');
+        const appToast = document.getElementById('appToast');
+        const toastMsg = document.getElementById('toastMsg');
+
+        // On Load
+        document.addEventListener('DOMContentLoaded', () => {
+            promptInput.focus();
+            fetchSchemes();
+
+            // Escape key listener for open modals/drawers
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    toggleSchemesDrawer(false);
+                    toggleDisclosuresModal(false);
+                    toggleChunksModal(false);
+                }
+            });
+        });
+
+        // Toggle Schemes Drawer (Uses 'hidden' to avoid click-blocking!)
+        function toggleSchemesDrawer(show) {
+            if (show) {
+                schemesDrawer.classList.remove('hidden');
+            } else {
+                schemesDrawer.classList.add('hidden');
+            }
+        }
+
+        // Toggle Disclosures Modal
+        function toggleDisclosuresModal(show) {
+            if (show) {
+                disclosuresModal.classList.remove('hidden');
+            } else {
+                disclosuresModal.classList.add('hidden');
+            }
+        }
+
+        // Toggle Chunks Inspector Modal
+        function toggleChunksModal(show) {
+            if (show) {
+                chunksModal.classList.remove('hidden');
+            } else {
+                chunksModal.classList.add('hidden');
+            }
+        }
+
+        // Show Toast Notification
+        let toastTimeout = null;
+        function showToast(text) {
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastMsg.textContent = text;
+            appToast.classList.remove('hidden');
+            toastTimeout = setTimeout(() => {
+                appToast.classList.add('hidden');
+            }, 2500);
+        }
+
+        // Fetch curated schemes from API
+        async function fetchSchemes() {
+            try {
+                const res = await fetch('/api/schemes');
+                if (!res.ok) return;
+                const data = await res.json();
+                cachedSchemes = data.schemes || [];
+                renderDrawerSchemes(cachedSchemes);
+            } catch (err) {
+                console.warn('Could not load /api/schemes:', err);
+            }
+        }
+
+        // Render schemes in the drawer
+        function renderDrawerSchemes(schemes) {
+            if (!schemes || schemes.length === 0) return;
+            drawerSchemesList.innerHTML = '';
+            schemes.forEach(s => {
+                const card = document.createElement('div');
+                card.className = 'p-3.5 rounded-xl bg-surface-elevated border border-border-subtle flex flex-col gap-2 hover:border-groww-green/30 transition-colors';
+                
+                // Extract short category tag
+                const catTag = s.category.split(':')[0] || 'Fund';
+
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="font-semibold text-xs text-text-main">${escapeHtml(s.scheme_name)}</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-groww-green/10 text-groww-green border border-groww-green/20 font-medium shrink-0">${escapeHtml(catTag)}</span>
+                    </div>
+                    <p class="text-[11px] text-text-muted">${escapeHtml(s.category)} • ${escapeHtml(s.amc)}</p>
+                    <div class="flex items-center gap-2 pt-1 border-t border-border-subtle/50 text-xs">
+                        <button onclick="askSchemePrompt('What is the exit load for ${escapeHtml(s.scheme_name)}?')" class="text-groww-green hover:underline text-[11px] font-medium flex items-center gap-0.5">
+                            Exit Load ↗
+                        </button>
+                        <span class="text-text-dim">•</span>
+                        <button onclick="askSchemePrompt('What is the expense ratio for ${escapeHtml(s.scheme_name)}?')" class="text-groww-green hover:underline text-[11px] font-medium flex items-center gap-0.5">
+                            Expense Ratio ↗
+                        </button>
+                        <span class="text-text-dim">•</span>
+                        <a href="${escapeHtml(s.groww_url)}" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-text-main text-[11px]">
+                            Groww ↗
+                        </a>
+                    </div>
+                `;
+                drawerSchemesList.appendChild(card);
+            });
+        }
+
+        // Ask scheme prompt from drawer
+        function askSchemePrompt(prompt) {
+            toggleSchemesDrawer(false);
+            submitPrompt(prompt);
+        }
+
+        // Handle prompt form submit
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const query = promptInput.value.trim();
+            if (!query || isWaitingForResponse) return;
+            submitPrompt(query);
+        }
+
+        // Main Submit Flow
+        async function submitPrompt(queryText) {
+            if (!queryText || isWaitingForResponse) return;
+
+            // Clear input and focus
+            promptInput.value = '';
+            promptInput.blur();
+
+            // Hide hero greeting once chatting starts
+            if (heroEmptyState) {
+                heroEmptyState.classList.add('hidden');
+            }
+
+            // Render User Query Bubble
+            appendUserMessage(queryText);
+
+            // Show typing indicator & set lock
+            isWaitingForResponse = true;
+            submitBtn.disabled = true;
+            typingIndicator.classList.remove('hidden');
+            scrollToBottom();
+
+            const startTime = performance.now();
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: queryText })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Server error occurred');
+                }
+
+                // Render Assistant Response
+                appendAssistantMessage(data);
+
+            } catch (error) {
+                appendErrorMessage(error.message || 'Unable to connect to the assistant server.');
+            } finally {
+                isWaitingForResponse = false;
+                submitBtn.disabled = false;
+                typingIndicator.classList.add('hidden');
+                scrollToBottom();
+                promptInput.focus();
+            }
+        }
+
+        // Append User Message Bubble (Right-aligned)
+        function appendUserMessage(text) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex justify-end w-full';
+            wrapper.innerHTML = `
+                <div class="max-w-[85%] sm:max-w-[75%] px-4 py-3 rounded-2xl rounded-tr-sm bg-surface-elevated border border-border-light text-text-main text-sm leading-relaxed shadow-sm">
+                    ${escapeHtml(text)}
+                </div>
+            `;
+            messagesList.appendChild(wrapper);
+        }
+
+        // Append Assistant Message (Left-aligned, enriched with citations, tags, inspect)
+        function appendAssistantMessage(data) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex items-start gap-3 w-full';
+
+            const isRefusal = data.is_refusal;
+            const citationUrl = data.citation_url || '';
+            const recencyDate = data.last_updated_date || '2026-11-15';
+            const latencyMs = data.latency_ms || 0;
+            const confidenceScore = Math.round((data.confidence_score || 0) * 100);
+            const chunks = data.retrieved_chunks || [];
+
+            // Unique ID for chunks access
+            const chunksKey = 'chunks_' + Date.now();
+            window[chunksKey] = chunks;
+
+            let cardBorder = isRefusal ? 'border-status-amber/40 bg-surface' : 'border-border-subtle bg-surface';
+            let statusTag = isRefusal 
+                ? `<span class="px-2 py-0.5 rounded-full bg-status-amber/10 text-status-amber border border-status-amber/25 text-[10px] font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">shield</span>Guardrail Refusal</span>`
+                : `<span class="px-2 py-0.5 rounded-full bg-groww-green/10 text-groww-green border border-groww-green/25 text-[10px] font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">verified</span>Grounded Fact</span>`;
+
+            wrapper.innerHTML = `
+                <div class="w-8 h-8 rounded-lg ${isRefusal ? 'bg-status-amber text-gray-950' : 'bg-groww-green text-gray-950'} flex items-center justify-center font-display font-bold text-xs shrink-0 shadow-sm mt-1">
+                    G
+                </div>
+                <div class="flex-1 max-w-[90%] sm:max-w-[85%] flex flex-col gap-2.5">
+                    <!-- Main Message Card -->
+                    <div class="p-4 rounded-2xl rounded-tl-sm ${cardBorder} shadow-md flex flex-col gap-3">
+                        
+                        <!-- Header Bar (Status badge + Scheme Name) -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-border-subtle/60 text-xs">
+                            <div class="flex items-center gap-2">
+                                ${statusTag}
+                                ${data.scheme_name ? `<span class="text-text-muted text-[11px] truncate max-w-[200px] sm:max-w-[280px]">${escapeHtml(data.scheme_name)}</span>` : ''}
+                            </div>
+                            <span class="text-text-dim text-[11px]">${latencyMs}ms</span>
+                        </div>
+
+                        <!-- Answer Body Text -->
+                        <div class="text-text-main text-[14px] leading-relaxed select-text font-normal">
+                            ${formatAnswerBody(data.answer)}
+                        </div>
+
+                        <!-- Citation Link Pill -->
+                        ${citationUrl ? `
+                            <div class="pt-1 flex items-center">
+                                <a href="${escapeHtml(citationUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight border border-border-subtle text-groww-green hover:text-groww-glow text-xs font-medium transition-colors">
+                                    <span class="material-symbols-outlined text-[14px]">link</span>
+                                    <span class="truncate max-w-[240px] sm:max-w-md">${escapeHtml(citationUrl.replace('https://', ''))}</span>
+                                    <span class="material-symbols-outlined text-[13px]">open_in_new</span>
+                                </a>
+                            </div>
+                        ` : ''}
+
+                        <!-- Metadata Footer & Interactive Actions -->
+                        <div class="pt-2 border-t border-border-subtle/50 flex flex-wrap items-center justify-between gap-2 text-[11px] text-text-muted">
+                            <div class="flex items-center gap-2">
+                                <span class="flex items-center gap-1 text-text-dim">
+                                    <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                    Last updated: <strong class="text-text-muted font-medium">${escapeHtml(recencyDate)}</strong>
+                                </span>
+                            </div>
+
+                            <div class="flex items-center gap-1.5">
+                                ${chunks.length > 0 ? `
+                                    <button onclick="inspectChunks('${chunksKey}')" class="px-2 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight border border-border-subtle text-text-muted hover:text-text-main transition-colors flex items-center gap-1 text-[11px]" title="Inspect retrieved context chunks">
+                                        <span class="material-symbols-outlined text-[13px] text-accent-indigo">layers</span>
+                                        <span>Sources (${chunks.length})</span>
+                                    </button>
+                                ` : ''}
+
+                                <button onclick="copyToClipboard(this, \`${escapeJsString(data.answer)}\`)" class="px-2 py-1 rounded-lg bg-surface-elevated hover:bg-surface-highlight border border-border-subtle text-text-muted hover:text-text-main transition-colors flex items-center gap-1 text-[11px]" title="Copy answer">
+                                    <span class="material-symbols-outlined text-[13px]">content_copy</span>
+                                    <span>Copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+
+            messagesList.appendChild(wrapper);
+        }
+
+        // Append Error Message
+        function appendErrorMessage(msg) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex items-start gap-3 w-full';
+            wrapper.innerHTML = `
+                <div class="w-8 h-8 rounded-lg bg-status-red text-white flex items-center justify-center font-display font-bold text-xs shrink-0 mt-1">
+                    !
+                </div>
+                <div class="p-4 rounded-2xl rounded-tl-sm bg-surface border border-status-red/40 text-sm text-text-main flex flex-col gap-1.5 shadow-md">
+                    <span class="font-semibold text-status-red text-xs">Request Failed</span>
+                    <p class="text-xs text-text-muted leading-relaxed">${escapeHtml(msg)}</p>
+                </div>
+            `;
+            messagesList.appendChild(wrapper);
+        }
+
+        // Format answer body to look clean and styled
+        function formatAnswerBody(rawText) {
+            if (!rawText) return '';
+            // Basic escaping then linebreaks
+            let escaped = escapeHtml(rawText);
+            // Replace newlines with breaks
+            return escaped.replace(/\n\n/g, '<br/><br/>').replace(/\n/g, '<br/>');
+        }
+
+        // Open Chunks Inspector Modal
+        function inspectChunks(key) {
+            const chunks = window[key] || [];
+            if (!chunks || chunks.length === 0) return;
+
+            chunksModalContent.innerHTML = '';
+            chunks.forEach((c, idx) => {
+                const chunkCard = document.createElement('div');
+                chunkCard.className = 'p-3 rounded-xl bg-surface-elevated border border-border-subtle flex flex-col gap-2';
+                chunkCard.innerHTML = `
+                    <div class="flex items-center justify-between text-[11px]">
+                        <span class="font-semibold text-text-main">Chunk #${idx + 1} • ${escapeHtml(c.scheme_name || c.scheme_id)}</span>
+                        <span class="font-mono text-accent-indigo text-[10px]">RRF: ${c.rrf_score || c.score || 'N/A'}</span>
+                    </div>
+                    <div class="text-[11px] text-text-muted bg-canvas/70 p-2.5 rounded-lg border border-border-subtle font-mono whitespace-pre-wrap leading-relaxed">
+                        ${escapeHtml(c.text || c.content || '')}
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-text-dim">
+                        <span>Section: ${escapeHtml(c.section || 'Overview')}</span>
+                        <span>Date: ${escapeHtml(c.last_scraped_date || '2026-11-15')}</span>
+                    </div>
+                `;
+                chunksModalContent.appendChild(chunkCard);
+            });
+
+            toggleChunksModal(true);
+        }
+
+        // Copy answer text to clipboard
+        async function copyToClipboard(btn, text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                showToast('Fact copied to clipboard');
+                const origHtml = btn.innerHTML;
+                btn.innerHTML = `<span class="material-symbols-outlined text-[13px] text-groww-green">check</span><span>Copied!</span>`;
+                setTimeout(() => { btn.innerHTML = origHtml; }, 2000);
+            } catch (err) {
+                console.error('Clipboard copy failed:', err);
+            }
+        }
+
+        // Clear Chat Conversation
+        function clearChat() {
+            messagesList.innerHTML = '';
+            if (heroEmptyState) {
+                heroEmptyState.classList.remove('hidden');
+            }
+            promptInput.value = '';
+            promptInput.focus();
+        }
+
+        // Scroll feed to bottom
+        function scrollToBottom() {
+            chatScrollArea.scrollTo({
+                top: chatScrollArea.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        // Utilities
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function escapeJsString(str) {
+            if (!str) return '';
+            return String(str).replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
+        }
+    </script>
+</body>
+</html>
