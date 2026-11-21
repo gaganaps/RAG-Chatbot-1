@@ -122,6 +122,8 @@ python3 -m src.ingestion.scheduler --run-now
 # Optional: Run persistent daily ingestion daemon at 10:00 AM IST (Asia/Kolkata)
 python3 -m src.ingestion.scheduler --schedule --hour 10 --minute 0 --timezone Asia/Kolkata
 ```
+> **Automated Cloud Scheduler**: A GitHub Actions workflow (`.github/workflows/daily_scheduler.yml`) runs this ingestion automatically every day at **10:00 AM IST** (`30 4 * * *` UTC), tests the pipeline, and uploads fresh corpus artifacts. You can also trigger it manually anytime via **GitHub Actions -> Daily Mutual Fund Ingestion Scheduler -> Run workflow**.
+
 
 ### 4. Start Web Application Server (Local)
 ```bash
