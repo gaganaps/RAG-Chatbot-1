@@ -1,0 +1,104 @@
+name: Daily Mutual Fund Ingestion Scheduler (10:00 AM IST)
+
+on:
+  schedule:
+    # 04:30 AM UTC = 10:00 AM IST (Asia/Kolkata, UTC+5:30) every day
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+    inputs:
+      force_crawl:
+        description: 'Force live web scraping bypassing cache'
+        required: false
+        type: boolean
+        default: false
+      run_tests:
+        description: 'Run ingestion & retrieval test suite'
+        required: false
+        type: boolean
+        default: true
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/daily_scheduler.yml'
+      - 'src/ingestion/**'
+      - 'tests/test_ingestion.py'
+
+permissions:
+  contents: write
+
+jobs:
+  run-scheduler:
+    name: Execute Daily Ingestion Pipeline
+    runs-on: ubuntu-latest
+
+    env:
+      SCHEDULER_HOUR: "10"
+      SCHEDULER_MINUTE: "0"
+      SCHEDULER_TIMEZONE: "Asia/Kolkata"
+      DATA_RAW_DIR: "./data/raw"
+      DATA_PROCESSED_DIR: "./data/processed"
+      CHROMA_PERSIST_DIR: "./chroma_db"
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Ingestion Unit Tests
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.run_tests }}
+        run: |
+          pytest -v tests/test_ingestion.py
+
+      - name: Execute Daily Ingestion Scheduler Pipeline
+        run: |
+          if [ "${{ inputs.force_crawl }}" = "true" ]; then
+            echo "Running ingestion with --force (live crawl)..."
+            python -m src.ingestion.scheduler --run-now --force
+          else
+            echo "Running deterministic ingestion cycle..."
+            python -m src.ingestion.scheduler --run-now
+          fi
+
+      - name: Verify Corpus Generation
+        run: |
+          ls -la data/processed/
+          test -f data/processed/corpus.jsonl || exit 1
+          test -f data/processed/corpus.json || exit 1
+          test -f data/processed/bm25_index.pkl || exit 1
+          echo "Corpus verification succeeded: all index artifacts present."
+
+      - name: Upload Processed Corpus Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mutual-fund-corpus-latest
+          path: |
+            data/processed/corpus.jsonl
+            data/processed/corpus.json
+            data/processed/bm25_index.pkl
+          retention-days: 14
+
+      - name: Commit & Push Updated Corpus (if changed)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/processed/corpus.json data/processed/corpus.jsonl data/processed/bm25_index.pkl
+          if git diff --staged --quiet; then
+            echo "No changes detected in knowledge corpus. Working tree clean."
+          else
+            echo "New mutual fund data or timestamp updates detected. Committing..."
+            git commit -m "[Automated] Daily mutual fund corpus refresh (10:00 AM IST) [skip ci]"
+            git push origin main
+          fi
