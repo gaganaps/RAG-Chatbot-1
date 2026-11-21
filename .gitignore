@@ -18,9 +18,7 @@ venv.bak/
 *.env
 .envrc
 
-# Local ChromaDB & SQLite cache
-chroma_db/
-*.sqlite3
+# SQLite databases
 db.sqlite3
 db.sqlite3-journal
 

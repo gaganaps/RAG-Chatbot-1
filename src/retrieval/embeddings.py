@@ -40,10 +40,25 @@ class EmbeddingEngine:
     ):
         self.model_name = model_name
         self.device = device or detect_optimal_device()
+
+        # Cloud/Low-RAM optimization: Limit CPU threads & disable gradients to safely fit 512MB RAM
+        if self.device == "cpu":
+            torch.set_num_threads(1)
+            try:
+                torch.set_num_interop_threads(1)
+            except RuntimeError:
+                pass
+        torch.set_grad_enabled(False)
+
         logger.info(f"Loading local embedding model '{self.model_name}' on device '{self.device}'...")
         self.model = SentenceTransformer(self.model_name, device=self.device)
+        self.model.eval()
         self._dimension = self.model.get_sentence_embedding_dimension()
         logger.info(f"Embedding model loaded successfully. Vector dimension: {self._dimension}")
+
+        # Reclaim initialization memory buffers
+        import gc
+        gc.collect()
 
     @property
     def dimension(self) -> int:
@@ -60,12 +75,13 @@ class EmbeddingEngine:
             List of floats representing the L2-normalized vector.
         """
         cleaned_query = query.strip()
-        embedding = self.model.encode(
-            cleaned_query,
-            normalize_embeddings=True,
-            show_progress_bar=False,
-            convert_to_numpy=True,
-        )
+        with torch.no_grad():
+            embedding = self.model.encode(
+                cleaned_query,
+                normalize_embeddings=True,
+                show_progress_bar=False,
+                convert_to_numpy=True,
+            )
         return embedding.tolist()
 
     def embed_documents(self, texts: List[str], batch_size: int = 32) -> List[List[float]]:
@@ -82,13 +98,14 @@ class EmbeddingEngine:
             return []
 
         cleaned_texts = [t.strip() for t in texts]
-        embeddings = self.model.encode(
-            cleaned_texts,
-            batch_size=batch_size,
-            normalize_embeddings=True,
-            show_progress_bar=len(texts) > 20,
-            convert_to_numpy=True,
-        )
+        with torch.no_grad():
+            embeddings = self.model.encode(
+                cleaned_texts,
+                batch_size=batch_size,
+                normalize_embeddings=True,
+                show_progress_bar=len(texts) > 20,
+                convert_to_numpy=True,
+            )
         return embeddings.tolist()
 
 
