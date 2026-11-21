@@ -18,7 +18,8 @@ NON-NEGOTIABLE OPERATIONAL CONSTRAINTS:
 1. SOURCING CONSTRAINT:
    - Base your answer EXCLUSIVELY on the provided Context Chunks.
    - Do NOT use any pre-trained external knowledge, assumptions, or extrapolations.
-   - If the exact factual answer is NOT explicitly stated in the context, output EXACTLY:
+   - If the user asks for multiple details (such as expense ratio and AUM), answer all factual details found in the context; if any specific requested detail is not found in the context, state that only that specific detail is not found in official scheme records instead of refusing the entire query.
+   - If none of the requested factual details are stated in the context, output EXACTLY:
      "The requested detail is not found in official scheme records."
 
 2. REGULATORY & ADVISORY CONSTRAINTS:
@@ -59,14 +60,18 @@ def format_context(results: List[RetrievalResult]) -> Tuple[str, str, str]:
         return "", AMFI_INVESTOR_EDUCATION_URL, "2026-11-15"
 
     context_blocks: List[str] = []
-    primary_source_url = results[0].source_url
+    primary_source_url = results[0].source_url or AMFI_INVESTOR_EDUCATION_URL
     latest_scraped_date = results[0].last_scraped_date or "2026-11-15"
 
+    # If the top result doesn't have a groww.in url, check if any chunk has one
+    if "groww.in" not in primary_source_url:
+        for res in results:
+            if res.source_url and "groww.in" in res.source_url:
+                primary_source_url = res.source_url
+                break
+
     for i, res in enumerate(results, start=1):
-        # Pick the most specific scheme URL if available
-        if res.source_url and "groww.in" in res.source_url:
-            primary_source_url = res.source_url
-        if res.last_scraped_date:
+        if res.last_scraped_date and res.last_scraped_date > latest_scraped_date:
             latest_scraped_date = res.last_scraped_date
 
         block = (

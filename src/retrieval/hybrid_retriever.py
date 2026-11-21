@@ -99,7 +99,9 @@ class SchemeEntityResolver:
         Returns:
             Matched canonical scheme_id, or None if ambiguous/unmentioned.
         """
-        q_lower = query.lower()
+        # Normalize common user typos like 'hfc' for 'hdfc'
+        q_norm = re.sub(r"\bhfc\b", "hdfc", query, flags=re.IGNORECASE)
+        q_lower = q_norm.lower()
         matched_schemes: Set[str] = set()
 
         for scheme_id, aliases in self.SCHEME_ALIASES.items():
@@ -199,7 +201,7 @@ class HybridRetriever:
         if target_scheme:
             for alias in self.scheme_resolver.SCHEME_ALIASES.get(target_scheme, []):
                 sparse_query = re.sub(r"\b" + re.escape(alias) + r"\b", "", sparse_query, flags=re.IGNORECASE)
-            sparse_query_cleaned = re.sub(r"\b(hdfc|fund|mutual)\b", "", sparse_query, flags=re.IGNORECASE).strip()
+            sparse_query_cleaned = re.sub(r"\b(hdfc|hfc|fund|mutual)\b", "", sparse_query, flags=re.IGNORECASE).strip()
             if sparse_query_cleaned:
                 sparse_query = sparse_query_cleaned
 

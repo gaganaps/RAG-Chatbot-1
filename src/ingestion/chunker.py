@@ -72,6 +72,7 @@ class SchemeChunker:
         # =====================================================================
         section_titles = {
             "expense_ratio": "Expense Ratio & Management Fees",
+            "fund_size": "Fund Size & AUM (Assets Under Management)",
             "exit_load": "Exit Load & Redemption Terms",
             "investment_limits": "Investment Limits & Minimums (SIP & Lumpsum)",
             "riskometer_and_benchmark": "Riskometer Rating & Benchmark Index",
@@ -107,6 +108,7 @@ class SchemeChunker:
             f"{scheme.scheme_name} is an open-ended mutual fund scheme offered by {scheme.amc_name} "
             f"under the {scheme.category} ({scheme.sub_category or 'General'}) category.\n"
             f"• Total Expense Ratio (Direct Plan): {scheme.expense_ratio}\n"
+            f"• Fund Size (AUM / Assets Under Management): {scheme.aum or 'Not Disclosed'}\n"
             f"• Exit Load: {scheme.exit_load}\n"
             f"• Minimum Investment: Minimum SIP is ₹{scheme.min_sip_investment}; Minimum Lumpsum is ₹{scheme.min_lumpsum_investment}.\n"
             f"• Lock-in Period: {scheme.lock_in_period}\n"

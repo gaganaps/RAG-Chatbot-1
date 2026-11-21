@@ -170,6 +170,7 @@ def test_chunk_section_coverage(chunker):
         scheme_chunks = [c for c in chunks if c.scheme_id == scheme_id]
         sections = {c.section for c in scheme_chunks}
         assert "expense_ratio" in sections
+        assert "fund_size" in sections
         assert "exit_load" in sections
         assert "investment_limits" in sections
         assert "riskometer_and_benchmark" in sections

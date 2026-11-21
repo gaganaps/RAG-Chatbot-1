@@ -84,7 +84,7 @@ class RAGEngine:
         self.output_guard = output_guard or OutputGuardrails()
         self.system_prompt = build_system_prompt()
 
-    def answer(self, query: str, top_k: int = 3) -> RAGResponse:
+    def answer(self, query: str, top_k: int = 4) -> RAGResponse:
         """Process a mutual fund question through the guarded RAG pipeline.
         
         Args:

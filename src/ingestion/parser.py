@@ -48,6 +48,7 @@ class ParsedSchemeData(BaseModel):
     min_sip_investment: int
     min_lumpsum_investment: int
     lock_in_period: str
+    aum: Optional[str] = None
     fund_managers: List[FundManager] = Field(default_factory=list)
     source_url: str
     last_scraped_date: str
@@ -213,6 +214,15 @@ class GrowwParser:
         expense_ratio = self._format_expense_ratio(mf_data.get("expense_ratio"))
         exit_load = self._clean_exit_load(mf_data.get("exit_load"))
 
+        raw_aum = mf_data.get("aum")
+        if raw_aum:
+            try:
+                aum_formatted = f"₹{float(raw_aum):,.2f} Cr"
+            except (ValueError, TypeError):
+                aum_formatted = str(raw_aum)
+        else:
+            aum_formatted = "Not Disclosed"
+
         min_sip = int(mf_data.get("min_sip_investment") or 100)
         min_lump = int(mf_data.get("min_investment_amount") or 100)
         lock_in = self._format_lock_in(mf_data.get("lock_in"))
@@ -234,6 +244,9 @@ class GrowwParser:
         section_facts = {
             "expense_ratio": (
                 f"The Total Expense Ratio (TER) of {scheme_name} (Direct Plan) is {expense_ratio}."
+            ),
+            "fund_size": (
+                f"The total Fund Size (AUM / Assets Under Management) of {scheme_name} is {aum_formatted}."
             ),
             "exit_load": (
                 f"The exit load for {scheme_name} is: {exit_load}"
@@ -260,6 +273,7 @@ class GrowwParser:
             f"AMC: {amc_name}\n"
             f"Category: {category} ({sub_category or 'General'})\n"
             f"Expense Ratio (Direct Plan): {expense_ratio}\n"
+            f"Fund Size (AUM): {aum_formatted}\n"
             f"Exit Load: {exit_load}\n"
             f"Minimum Investment: Minimum SIP is ₹{min_sip}; Minimum Lumpsum is ₹{min_lump}.\n"
             f"Lock-in Period: {lock_in}\n"
@@ -283,6 +297,7 @@ class GrowwParser:
             min_sip_investment=min_sip,
             min_lumpsum_investment=min_lump,
             lock_in_period=lock_in,
+            aum=aum_formatted,
             fund_managers=fund_managers,
             source_url=source_url,
             last_scraped_date=last_scraped_date,

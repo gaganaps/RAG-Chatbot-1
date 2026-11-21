@@ -286,8 +286,8 @@ def test_real_corpus_indexing_and_scheme_coverage():
 
         summary = indexer.build_vector_index(force_reindex=True)
         assert summary["status"] == "SUCCESS"
-        assert summary["chunks_upserted"] == 50
-        assert summary["total_collection_count"] == 50
+        assert summary["chunks_upserted"] == 55
+        assert summary["total_collection_count"] == 55
         assert summary["vector_dimension"] == 384
 
         expected_schemes = {
