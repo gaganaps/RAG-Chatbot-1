@@ -22,11 +22,19 @@ class APIServer:
     """REST API and Static Asset Server powering the Google Stitch Dark-Theme UI."""
 
     def __init__(self, rag_engine: RAGEngine = None):
-        """Initialize API server with RAG Engine."""
-        self.engine = rag_engine or RAGEngine()
+        """Initialize API server with lazy-loadable RAG Engine."""
+        self._engine = rag_engine
         self.app = web.Application()
         self._setup_routes()
         self._setup_cors()
+
+    @property
+    def engine(self) -> RAGEngine:
+        """Lazy-loaded RAG Engine to ensure instant port binding on cloud PaaS (Render)."""
+        if self._engine is None:
+            logger.info("Initializing RAG Engine (lazy-loaded on first request)...")
+            self._engine = RAGEngine()
+        return self._engine
 
     def _setup_cors(self):
         """Enable CORS for external frontend runners (e.g. Vite, Next.js, Stitch live preview)."""
