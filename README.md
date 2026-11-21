@@ -137,7 +137,7 @@ To share this bot publicly over HTTPS without any containers or complex DevOps:
 2. Go to **[Render.com](https://render.com)** -> Create **New Web Service** -> Connect your GitHub repo.
 3. Configure the service:
    - **Environment**: `Python 3`
-   - **Build Command**: `pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && pip install --no-cache-dir -r requirements.txt`
+   - **Build Command**: `pip install --no-cache-dir -r requirements.txt`
    - **Start Command**: `python -m src.ui.server`
    - **Environment Variables**: Add `GROQ_API_KEY` (and `LLM_PROVIDER=groq`).
 4. Click **Deploy Web Service** -> Your bot is live on a free public HTTPS URL (e.g. `https://groww-mf-faq.onrender.com`)!
